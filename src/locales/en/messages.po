@@ -1,0 +1,626 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2019-12-07 12:15+0330\n"
+"Mime-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/App.tsx:24
+msgid "%s - Performance Review"
+msgstr "%s - Performance Review"
+
+#: src/pages/manager-adjustment-page/achievements/ManagerAdjustmentForm.tsx:39
+msgid "**Coordinate reviewers with manager"
+msgstr "**Coordinate reviewers with manager"
+
+#: src/pages/projects-page/ProjectForm.tsx:80
+msgid "**Coordinate reviewers with your manager (maximum {num} reviewers)"
+msgstr "**Coordinate reviewers with your manager (maximum {num} reviewers)"
+
+#: src/containers/main/getMenuItems.ts:22
+#: src/pages/dashboard-page/DashboardPage.tsx:36
+#: src/pages/manager-adjustment-dashboard/ManagerAdjustmentDashboardTable.tsx:62
+#: src/pages/manager-adjustment-page/ManagerAdjustmentPage.tsx:42
+#: src/pages/manager-review-dashboard/ManagerReviewDashboardDrawerContent.tsx:66
+#: src/pages/manager-review-dashboard/ManagerReviewDashboardTable.tsx:75
+#: src/pages/manager-review-page/ManagerReviewPage.tsx:46
+#: src/pages/manager-review-page/ManagerReviewPrintPage.tsx:52
+#: src/pages/peer-review-page/EndEvaluationDialogContent/AchievementsContent.tsx:13
+#: src/pages/peer-review-page/PeerReviewPage.tsx:45
+#: src/pages/result-page/ResultPage.tsx:42
+#: src/pages/self-review-page/SelfReviewPage.tsx:22
+msgid "Achievements"
+msgstr "Achievements"
+
+#: src/pages/projects-page/AddProjectForm.tsx:38
+#: src/pages/projects-page/AddProjectForm.tsx:43
+#: src/shared/strengths-weaknesses/StrengthsOrWeaknesses.tsx:58
+msgid "Add"
+msgstr "Add"
+
+#: src/pages/peer-review-board-page/PeerReviewBoardPage.tsx:83
+msgid "Add here after completing any evaluation"
+msgstr "Add here after completing any evaluation"
+
+#: src/pages/manager-adjustment-dashboard/TableFilters.tsx:28
+#: src/pages/manager-review-dashboard/TableFilters.tsx:29
+#: src/pages/manager-review-dashboard/TableFilters.tsx:42
+msgid "All"
+msgstr "All"
+
+#: src/shared/gift-dialog/GiftDialog.tsx:36
+msgid "All reviews were successfully done"
+msgstr "All reviews were successfully done"
+
+#: src/pages/manager-adjustment-page/achievements/ManagerAdjustmentAchievements.tsx:65
+#: src/pages/manager-review-page/achievements/ManagerReviewAchievements.tsx:63
+#: src/pages/manager-review-page/dominant-characteristics/ManagerReviewDominantCharacteristics.tsx:58
+#: src/pages/manager-review-page/overall-evaluation/ManagerReviewOverallEvaluation.tsx:57
+#: src/pages/peer-review-page/EndEvaluation.tsx:71
+#: src/pages/peer-review-page/PeerReviewPersonInfoCard.tsx:32
+#: src/pages/projects-page/project-review-title-editor/ProjectReviewEditForm.tsx:52
+msgid "An error occurred. Try again!"
+msgstr "An error occurred. Try again!"
+
+#: src/pages/projects-page/ProjectForm.tsx:95
+msgid "Are you sure you want to delete {projectName} review?"
+msgstr "Are you sure you want to delete {projectName} review?"
+
+#: src/pages/peer-review-page/EndEvaluation.tsx:104
+msgid "Are you sure you want to end the {name} evaluation?"
+msgstr "Are you sure you want to end the {name} evaluation?"
+
+#: src/pages/projects-page/project-review-title-editor/ProjectReviewEditForm.tsx:67
+#: src/shared/sticky-bottom-paper/StickyBottomPaper.stories.tsx:11
+msgid "Cancel"
+msgstr "Cancel"
+
+#: src/pages/manager-adjustment-page/ManagerAdjustmentPage.tsx:35
+#: src/pages/manager-review-page/ManagerReviewPage.tsx:38
+#: src/pages/manager-review-page/ManagerReviewPrintPage.tsx:42
+#: src/pages/peer-review-page/PeerReviewPage.tsx:37
+#: src/pages/self-review-page/SelfReviewPage.tsx:31
+#: src/stories/decorators/promptDecorator.tsx:7
+msgid "Changes you made may not be saved."
+msgstr "Changes you made may not be saved."
+
+#: src/pages/projects-page/AddProjectForm.tsx:20
+msgid "Choose projects you have been working on in the past year (At most {num})."
+msgstr "Choose projects you have been working on in the past year (At most {num})."
+
+#: src/pages/manager-adjustment-dashboard/TableFilters.tsx:19
+#: src/pages/manager-review-dashboard/TableFilters.tsx:14
+msgid "Colleague name"
+msgstr "Colleague name"
+
+#: src/shared/full-page-error/FullPageError.stories.tsx:9
+msgid "Criteria"
+msgstr "Criteria"
+
+#: src/containers/main/getMenuItems.ts:6
+#: src/containers/main/getMenuItems.ts:47
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: src/pages/start-page/NoPeerReviewPage.tsx:31
+#: src/pages/start-page/StartReviewCard.tsx:19
+msgid "Dear {name}, Hello"
+msgstr "Dear {name}, Hello"
+
+#: src/pages/projects-page/ProjectForm.tsx:95
+msgid "Delete"
+msgstr "Delete"
+
+#: src/pages/manager-adjustment-dashboard/TableFilters.tsx:30
+#: src/pages/manager-review-dashboard/TableFilters.tsx:31
+msgid "Doing"
+msgstr "Doing"
+
+#: src/containers/main/getMenuItems.ts:28
+#: src/pages/dashboard-page/DashboardPage.tsx:49
+#: src/pages/manager-review-page/ManagerReviewPage.tsx:47
+#: src/pages/manager-review-page/ManagerReviewPrintPage.tsx:57
+#: src/pages/peer-review-page/EndEvaluationDialogContent/DominantCharacteristicsContent.tsx:11
+#: src/pages/peer-review-page/PeerReviewPage.tsx:47
+#: src/pages/result-page/ResultPage.tsx:43
+#: src/pages/self-review-page/SelfReviewPage.tsx:23
+msgid "Dominant Characteristics"
+msgstr "Dominant Characteristics"
+
+#: src/assets/icons/Done.tsx:5
+#: src/pages/manager-adjustment-dashboard/TableFilters.tsx:31
+#: src/pages/manager-review-dashboard/TableFilters.tsx:32
+#: src/pages/peer-review-board-page/PeerReviewBoardPage.tsx:82
+msgid "Done"
+msgstr "Done"
+
+#: src/pages/peer-review-page/PeerReviewPersonInfoCard.tsx:37
+msgid "Edit"
+msgstr "Edit"
+
+#: src/pages/projects-page/project-review-title-editor/ProjectReviewTitleModal.tsx:8
+msgid "Edit project title"
+msgstr "Edit project title"
+
+#: src/pages/peer-review-page/EndEvaluation.tsx:94
+msgid "End {name}'s evaluation"
+msgstr "End {name}'s evaluation"
+
+#: src/core/locales/languages.ts:5
+msgid "English"
+msgstr "English"
+
+#: src/shared/error/OverlayError.tsx:12
+msgid "Error"
+msgstr "Error"
+
+#: src/pages/manager-review-page/achievements/ManagerReviewForm.tsx:59
+#: src/pages/manager-review-page/overall-evaluation/ManagerReviewOverallEvaluation.tsx:74
+#: src/pages/peer-review-page/projectsTab/projects-form/PeerReviewProjectsForm.tsx:39
+#: src/shared/project-output/ManagerProjectOutput.tsx:43
+#: src/shared/project-output/ProjectCommentOutput.tsx:27
+#: src/shared/project-output/ProjectOutput.tsx:34
+msgid "Evaluation"
+msgstr "Evaluation"
+
+#: src/pages/manager-adjustment-dashboard/TableFilters.tsx:26
+#: src/pages/manager-review-dashboard/TableFilters.tsx:25
+msgid "Evaluation Status"
+msgstr "Evaluation Status"
+
+#: src/global-types/Evaluation.ts:18
+msgid "Exceeds Expectations from Him/Her"
+msgstr "Exceeds Expectations from Him/Her"
+
+#: src/global-types/Evaluation.ts:12
+msgid "Exceeds Expectations from me"
+msgstr "Exceeds Expectations from me"
+
+#: src/pages/dashboard-page/AchievementsNoProjects.tsx:8
+msgid "Go to Achievements page and add projects you have participated in"
+msgstr "Go to Achievements page and add projects you have participated in"
+
+#: src/pages/peer-review-board-page/PeerReviewBoardPage.tsx:77
+msgid "Good job!"
+msgstr "Good job!"
+
+#: src/global-types/Evaluation.ts:16
+msgid "He/She Needs Improvement"
+msgstr "He/She Needs Improvement"
+
+#: src/pages/peer-review-page/PeerReviewPersonInfoCard.tsx:38
+#: src/shared/user-card/UserCard.tsx:39
+msgid "He/She asked your review on {numberOfProjects} project(s)"
+msgstr "He/She asked your review on {numberOfProjects} project(s)"
+
+#: src/pages/projects-page/ProjectForm.tsx:65
+msgid "How effective were you in this project?"
+msgstr "How effective were you in this project?"
+
+#: src/global-types/Evaluation.ts:10
+msgid "I Need Improvement"
+msgstr "I Need Improvement"
+
+#: src/pages/manager-adjustment-page/achievements/ManagerAdjustmentForm.tsx:47
+msgid "I approve"
+msgstr "I approve"
+
+#: src/pages/projects-page/ProjectForm.tsx:88
+msgid "I consulted with my manager"
+msgstr "I consulted with my manager"
+
+#: src/pages/dashboard-page/DominantCharacteristicsCircularIndicator.tsx:56
+msgid "I thought you forgot to write your strengths!"
+msgstr "I thought you forgot to write your strengths!"
+
+#: src/assets/icons/InProgress.tsx:5
+#: src/pages/peer-review-board-page/PeerReviewBoardPage.tsx:79
+msgid "In Progress"
+msgstr "In Progress"
+
+#: src/pages/dashboard-page/DominantCharacteristicsCircularIndicator.tsx:59
+msgid "It'd be a good idea to write a weakness!"
+msgstr "It'd be a good idea to write a weakness!"
+
+#: src/pages/dashboard-page/DominantCharacteristicsCircularIndicator.tsx:67
+msgid "It'd be good if u wrote more!"
+msgstr "It'd be good if u wrote more!"
+
+#: src/pages/dashboard-page/DominantCharacteristicsCircularIndicator.tsx:62
+msgid "It's complete!"
+msgstr "It's complete!"
+
+#: src/shared/auth/LoginForm.tsx:20
+msgid "Login"
+msgstr "Login"
+
+#: src/pages/manager-adjustment-dashboard/ManagerAdjustmentDashboardTable.tsx:59
+#: src/pages/manager-adjustment-dashboard/TableFilters.tsx:22
+#: src/pages/manager-review-dashboard/ManagerReviewDashboardDrawerContent.tsx:60
+#: src/pages/manager-review-dashboard/ManagerReviewDashboardTable.tsx:72
+#: src/pages/manager-review-dashboard/TableFilters.tsx:19
+#: src/shared/review-item-info/IdentifiedReviewItemInfo.tsx:19
+msgid "Manager"
+msgstr "Manager"
+
+#: src/pages/result-page/ResultPage.tsx:37
+msgid "Manager's Overall Evaluation of Your Performance"
+msgstr "Manager's Overall Evaluation of Your Performance"
+
+#: src/global-types/Evaluation.ts:17
+msgid "Meets Expectations from Him/Her"
+msgstr "Meets Expectations from Him/Her"
+
+#: src/global-types/Evaluation.ts:11
+msgid "Meets Expectations from me"
+msgstr "Meets Expectations from me"
+
+#: src/pages/projects-page/ProjectForm.tsx:70
+msgid "My evaluation"
+msgstr "My evaluation"
+
+#: src/pages/peer-review-page/EndEvaluation.tsx:109
+#: src/shared/confirm-button/ConfirmButton.tsx:8
+msgid "No"
+msgstr "No"
+
+#: src/shared/forminator/inputs/SelectAutoComplete.tsx:33
+#: src/shared/forminator/inputs/SelectMultiAutoComplete.tsx:42
+msgid "No Options"
+msgstr "No Options"
+
+#: src/shared/confirm-provider/ConfirmationDialog.tsx:23
+msgid "No! Wait"
+msgstr "No! Wait"
+
+#: src/pages/result-page/project-result-page/ProjectResultExpansionPanel.tsx:64
+msgid "Other people comments about your performance compared to initial expectation"
+msgstr "Other people comments about your performance compared to initial expectation"
+
+#: src/pages/manager-review-page/achievements/ManagerReviewAchievementsExpansionPanel.tsx:71
+msgid "Other people comments about {name} performance compared to initial expectation"
+msgstr "Other people comments about {name} performance compared to initial expectation"
+
+#: src/pages/manager-review-dashboard/ManagerReviewDashboardDrawerContent.tsx:61
+#: src/pages/manager-review-dashboard/TableFilters.tsx:38
+#: src/pages/manager-review-page/ManagerReviewPage.tsx:48
+#: src/pages/manager-review-page/ManagerReviewPrintPage.tsx:62
+msgid "Overall Evaluation"
+msgstr "Overall Evaluation"
+
+#: src/pages/manager-review-dashboard/ManagerReviewDashboardTable.tsx:76
+msgid "Overall Rating"
+msgstr "Overall Rating"
+
+#: src/shared/auth/LoginForm.tsx:15
+msgid "Password"
+msgstr "Password"
+
+#: src/containers/main/getMenuItems.ts:37
+msgid "Peer Review"
+msgstr "Peer Review"
+
+#: src/App.tsx:24
+#: src/containers/main/MainContainer.tsx:23
+#: src/shared/full-page-error/FullPageError.stories.tsx:33
+#: src/shared/layouts/dashboard-layouts/DashboardLayout.stories.tsx:26
+msgid "Performance Review"
+msgstr "Performance Review"
+
+#: src/shared/auth/Login.tsx:35
+msgid "Performance Review System"
+msgstr "Performance Review System"
+
+#: src/core/locales/languages.ts:4
+msgid "Persian"
+msgstr "فارسی"
+
+#: src/pages/idle-page/IdlePage.tsx:10
+msgid "Programmers are typing..."
+msgstr "Programmers are typing..."
+
+#: src/pages/projects-page/ProjectsPage.tsx:70
+msgid "Project review name is duplicated."
+msgstr "Project review name is duplicated."
+
+#: src/pages/projects-page/AddProjectForm.tsx:29
+#: src/pages/projects-page/project-review-title-editor/ProjectReviewEditForm.tsx:59
+msgid "Project title"
+msgstr "Project title"
+
+#: src/pages/projects-page/AddProjectForm.tsx:16
+#: src/shared/full-page-error/FullPageError.stories.tsx:21
+msgid "Projects"
+msgstr "Projects"
+
+#: src/shared/review-item-info/IdentifiedReviewItemInfo.tsx:21
+msgid "Reviewee"
+msgstr "Reviewee"
+
+#: src/pages/manager-adjustment-page/achievements/ManagerAdjustmentForm.tsx:39
+#: src/pages/projects-page/ProjectForm.tsx:80
+msgid "Reviewers (maximum {num})"
+msgstr "Reviewers (maximum {num})"
+
+#: src/pages/manager-adjustment-page/achievements/ManagerAdjustmentForm.tsx:55
+#: src/pages/manager-review-page/achievements/ManagerReviewForm.tsx:73
+#: src/pages/manager-review-page/dominant-characteristics/ManagerReviewDominantCharacteristics.tsx:93
+#: src/pages/manager-review-page/overall-evaluation/ManagerReviewOverallEvaluation.tsx:82
+#: src/pages/peer-review-page/projectsTab/projects-form/PeerReviewProjectsForm.tsx:51
+#: src/pages/projects-page/ProjectForm.tsx:99
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:63
+msgid "Save"
+msgstr "Save"
+
+#: src/shared/multiline-output/MultilineOutput.tsx:40
+msgid "See Less"
+msgstr "See Less"
+
+#: src/pages/manager-review-dashboard/ManagerReviewDashboardDrawerContent.tsx:49
+#: src/shared/multiline-output/MultilineOutput.tsx:40
+msgid "See More"
+msgstr "See More"
+
+#: src/shared/rating/Rating.stories.tsx:13
+#: src/shared/rating/Rating.stories.tsx:23
+#: src/shared/rating/Rating.stories.tsx:33
+#: src/shared/rating/Rating.stories.tsx:43
+#: src/shared/select/Select.stories.tsx:18
+#: src/shared/select/Select.stories.tsx:28
+msgid "Select"
+msgstr "Select"
+
+#: src/containers/main/getMenuItems.ts:13
+msgid "Self Review"
+msgstr "Self Review"
+
+#: src/pages/start-page/NoPeerReviewPage.tsx:37
+#: src/shared/gift-dialog/GiftDialog.tsx:45
+msgid "Show and claim reward"
+msgstr "Show and claim reward"
+
+#: src/core/snackbar/Snackbar.stories.tsx:23
+#: src/pages/peer-review-page/projectsTab/project-expansion-panel/PeerReviewProjectExpansionPanel.tsx:42
+#: src/pages/projects-page/ProjectsPage.tsx:62
+#: src/pages/projects-page/ProjectsPage.tsx:70
+#: src/pages/projects-page/project-review-title-editor/ProjectReviewEditForm.tsx:43
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesPage.tsx:73
+msgid "Something went wrong."
+msgstr "Something went wrong."
+
+#: src/shared/error/OverlayError.tsx:9
+msgid "Something went wrong. Please try again"
+msgstr "Something went wrong. Please try again"
+
+#: src/pages/start-page/StartReviewCard.tsx:25
+msgid "Start"
+msgstr "Start"
+
+#: src/shared/full-page-error/FullPageError.stories.tsx:15
+msgid "Strengths and Weaknesses"
+msgstr "Strengths and Weaknesses"
+
+#: src/core/snackbar/Snackbar.stories.tsx:15
+#: src/core/snackbar/Snackbar.stories.tsx:25
+#: src/shared/rating/Rating.stories.tsx:16
+#: src/shared/rating/Rating.stories.tsx:26
+#: src/shared/rating/Rating.stories.tsx:36
+#: src/shared/rating/Rating.stories.tsx:46
+#: src/shared/select/Select.stories.tsx:21
+#: src/shared/select/Select.stories.tsx:31
+#: src/shared/sticky-bottom-paper/StickyBottomPaper.stories.tsx:13
+msgid "Submit"
+msgstr "Submit"
+
+#: src/pages/projects-page/project-review-title-editor/ProjectReviewEditForm.tsx:71
+msgid "Submit changes"
+msgstr "Submit changes"
+
+#: src/core/snackbar/Snackbar.stories.tsx:13
+#: src/pages/manager-adjustment-page/achievements/ManagerAdjustmentAchievements.tsx:62
+#: src/pages/manager-review-page/achievements/ManagerReviewAchievements.tsx:60
+#: src/pages/manager-review-page/dominant-characteristics/ManagerReviewDominantCharacteristics.tsx:55
+#: src/pages/manager-review-page/overall-evaluation/ManagerReviewOverallEvaluation.tsx:54
+#: src/pages/peer-review-page/projectsTab/project-expansion-panel/PeerReviewProjectExpansionPanel.tsx:39
+#: src/pages/projects-page/ProjectsPage.tsx:59
+#: src/pages/projects-page/project-review-title-editor/ProjectReviewEditForm.tsx:48
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesPage.tsx:70
+msgid "Successfully saved."
+msgstr "Successfully saved."
+
+#: src/global-types/Evaluation.ts:13
+#: src/global-types/Evaluation.ts:19
+msgid "Superb"
+msgstr "Superb"
+
+#: src/shared/gift-dialog/GiftDialog.tsx:47
+msgid "Thanks, I claim it later"
+msgstr "Thanks, I claim it later"
+
+#: src/pages/dashboard-page/ProjectProgress.tsx:14
+#: src/pages/projects-page/ProjectExpansionPanel.tsx:31
+msgid "The manager has not been consulted"
+msgstr "The manager has not been consulted"
+
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:54
+#: src/shared/dominant-characteristics-output/DominantCharacteristics.tsx:21
+msgid "The most important characteristics or behaviors I should improve in myself"
+msgstr "The most important characteristics or behaviors I should improve in myself"
+
+#: src/pages/manager-review-page/dominant-characteristics/ManagerReviewDominantCharacteristics.tsx:82
+#: src/pages/result-page/strengths-weaknesses-result-page/StrengthsWeaknessesResult.tsx:7
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:55
+msgid "The most important characteristics or behaviors he/she should improve"
+msgstr "The most important characteristics or behaviors he/she should improve"
+
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:45
+#: src/shared/dominant-characteristics-output/DominantCharacteristics.tsx:18
+msgid "The most important characteristics or effective behaviors that I should maintain"
+msgstr "The most important characteristics or effective behaviors that I should maintain"
+
+#: src/pages/manager-review-page/dominant-characteristics/ManagerReviewDominantCharacteristics.tsx:74
+#: src/pages/result-page/strengths-weaknesses-result-page/StrengthsWeaknessesResult.tsx:6
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:46
+msgid "The most important characteristics or effective behaviors that he/she should maintain"
+msgstr "The most important characteristics or effective behaviors that he/she should maintain"
+
+#: src/pages/peer-review-page/EndEvaluation.tsx:97
+msgid "The parts that are not complete"
+msgstr "The parts that are not complete"
+
+#: src/pages/projects-page/project-review-title-editor/ProjectReviewEditForm.tsx:43
+msgid "The project review name already exists."
+msgstr "The project review name already exists."
+
+#: src/shared/those-who-did-not-comment/ThoseWhoDidNotComment.tsx:52
+msgid "Those who did not comment"
+msgstr "Those who did not comment"
+
+#: src/assets/icons/Todo.tsx:5
+#: src/pages/manager-adjustment-dashboard/TableFilters.tsx:29
+#: src/pages/manager-review-dashboard/TableFilters.tsx:30
+#: src/pages/peer-review-board-page/PeerReviewBoardPage.tsx:76
+msgid "Todo"
+msgstr "Todo"
+
+#: src/shared/error/OverlayError.tsx:9
+msgid "Try Again"
+msgstr "Try Again"
+
+#: src/pages/manager-review-dashboard/ManagerReviewDashboardTable.tsx:93
+#: src/pages/manager-review-page/achievements/ManagerReviewAchievementsRatingGroup.tsx:41
+#: src/pages/manager-review-page/overall-evaluation/ManagerReviewOverallEvaluation.tsx:44
+#: src/pages/manager-review-page/overall-evaluation/ManagerReviewOverallEvaluation.tsx:45
+#: src/pages/result-page/project-result-page/ProjectResultRatingGroup.tsx:41
+#: src/shared/evaluation-output/EvaluationOutput.tsx:23
+#: src/shared/evaluation-output/EvaluationOutput.tsx:24
+msgid "Unknown"
+msgstr "Unknown"
+
+#: src/pages/manager-adjustment-dashboard/ManagerAdjustmentDashboardTable.tsx:54
+#: src/pages/manager-review-dashboard/ManagerReviewDashboardTable.tsx:67
+msgid "User"
+msgstr "User"
+
+#: src/shared/auth/LoginForm.tsx:12
+msgid "Username"
+msgstr "Username"
+
+#: src/shared/auth/Login.tsx:22
+msgid "Username or Password is incorrect."
+msgstr "Username or Password is incorrect."
+
+#: src/pages/dashboard-page/LinkButton.tsx:10
+msgid "View"
+msgstr "View"
+
+#: src/pages/manager-review-page/dominant-characteristics/ManagerReviewDominantCharacteristics.tsx:77
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:46
+msgid "What should he/she continue doing"
+msgstr "What should he/she continue doing"
+
+#: src/pages/manager-review-page/dominant-characteristics/ManagerReviewDominantCharacteristics.tsx:85
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:55
+msgid "What should he/she improve"
+msgstr "What should he/she improve"
+
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:46
+msgid "What to continue doing"
+msgstr "What to continue doing"
+
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:55
+msgid "What to improve"
+msgstr "What to improve"
+
+#: src/pages/peer-review-page/EndEvaluation.tsx:111
+#: src/shared/confirm-button/ConfirmButton.tsx:8
+msgid "Yes"
+msgstr "Yes"
+
+#: src/shared/confirm-provider/ConfirmationDialog.tsx:25
+msgid "Yes! Go"
+msgstr "Yes! Go"
+
+#: src/shared/forminator/inputs/SelectMultiAutoComplete.tsx:27
+msgid "You can choose maximum {num} reviewers"
+msgstr "You can choose maximum {num} reviewers"
+
+#: src/pages/peer-review-page/EndEvaluationDialogContent/DominantCharacteristicsContent.tsx:13
+msgid "You did not write any strengths"
+msgstr "You did not write any strengths"
+
+#: src/pages/peer-review-page/EndEvaluationDialogContent/DominantCharacteristicsContent.tsx:14
+msgid "You did not write any weaknesses"
+msgstr "You did not write any weaknesses"
+
+#: src/pages/manager-review-page/ManagerReviewProgress.tsx:34
+msgid "You have evaluated all {total} achievements. You can change them whenever you want to."
+msgstr "You have evaluated all {total} achievements. You can change them whenever you want to."
+
+#: src/pages/dashboard-page/AchievementsNoProjects.tsx:6
+msgid "You haven't added any project."
+msgstr "You haven't added any project."
+
+#: src/pages/dashboard-page/DominantCharacteristicsCircularIndicator.tsx:53
+msgid "You haven't entered anything yet!"
+msgstr "You haven't entered anything yet!"
+
+#: src/pages/manager-review-page/ManagerReviewProgress.tsx:32
+msgid "You haven't evaluated any achievements yet"
+msgstr "You haven't evaluated any achievements yet"
+
+#: src/pages/peer-review-board-page/PeerReviewBoardPage.tsx:80
+msgid "You haven't started evaluating yet!"
+msgstr "You haven't started evaluating yet!"
+
+#: src/pages/dashboard-page/DominantCharacteristicsCircularIndicator.tsx:65
+msgid "You're almost there!"
+msgstr "You're almost there!"
+
+#: src/pages/peer-review-page/projectsTab/PeerReviewProjectsResult.tsx:48
+#: src/pages/peer-review-page/projectsTab/project-expansion-panel/PeerReviewProjectExpansionPanel.tsx:66
+msgid "Your comment about {name}'s performance in this project"
+msgstr "Your comment about {name}'s performance in this project"
+
+#: src/pages/result-page/project-result-page/ProjectResultExpansionPanel.tsx:48
+msgid "Your comments about your performance compared to initial expectation"
+msgstr "Your comments about your performance compared to initial expectation"
+
+#: src/pages/manager-review-page/achievements/ManagerReviewForm.tsx:55
+msgid "Your evaluation of {name} on project {projectName}"
+msgstr "Your evaluation of {name} on project {projectName}"
+
+#: src/pages/manager-review-page/ManagerReviewExpansionPanelSummary.tsx:19
+msgid "Your evaluation:"
+msgstr "Your evaluation:"
+
+#: src/pages/manager-review-page/ManagerReviewProgress.tsx:33
+msgid "{evaluatedItems} of {total} achievements are evaluated"
+msgstr "{evaluatedItems} of {total} achievements are evaluated"
+
+#: src/pages/manager-review-page/achievements/ManagerReviewAchievementsRatingGroup.tsx:58
+#: src/pages/result-page/project-result-page/ProjectResultRatingGroup.tsx:58
+msgid "{evaluationsCount} evaluations / {commentsCount} comments"
+msgstr "{evaluationsCount} evaluations / {commentsCount} comments"
+
+#: src/pages/peer-review-page/projectsTab/project-expansion-panel/PeerReviewProjectExpansionPanel.tsx:55
+msgid "{name}'s comment about his/her achievements in this project"
+msgstr "{name}'s comment about his/her achievements in this project"
+
+#: src/pages/manager-adjustment-page/achievements/ManagerAdjustmentAchievementsExpansionPanel.tsx:44
+#: src/pages/manager-review-page/achievements/ManagerReviewAchievementsExpansionPanel.tsx:60
+#: src/pages/peer-review-page/projectsTab/PeerReviewProjectsResult.tsx:38
+msgid "{name}'s comment about his/her performance compared to initial expectation"
+msgstr "{name}'s comment about his/her performance compared to initial expectation"
+
+#: src/pages/peer-review-page/EndEvaluation.tsx:63
+msgid "{name}'s evaluation completed successfully."
+msgstr "{name}'s evaluation completed successfully."
