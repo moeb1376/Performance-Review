@@ -13,7 +13,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.6]
+        python-version: [3.10]
 
     steps:
     - uses: actions/checkout@v3
@@ -25,9 +25,9 @@ jobs:
       run: |
         pip install poetry
         poetry config virtualenvs.create false
-        (cd review && poetry install -n --no-dev)
+        (cd backend/review && poetry install -n --no-dev)
     - name: Check schema and collect statics
       run: |
-        (cd review && cp sample.env .env && python manage.py graphql_schema --out schema.graphql)
+        (cd backend/review && cp sample.env .env && python manage.py graphql_schema --out schema.graphql)
         git diff --exit-code --name-only
-        (cd review && cp sample.env .env && python manage.py collectstatic)
+        (cd backend/review && cp sample.env .env && python manage.py collectstatic)
