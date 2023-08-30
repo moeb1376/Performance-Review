@@ -2,5 +2,5 @@
 *Dockerfile*
 *docker-compose*
 .dockerignore
-.env
+#.env
 .travis.yml

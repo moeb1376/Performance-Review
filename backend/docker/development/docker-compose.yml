@@ -1,22 +1,27 @@
 version: '3.4'
 services:
   database:
+    restart: always
     image: postgres:12.1
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_USER
       - POSTGRES_DB
       - POSTGRES_PASSWORD
     volumes:
       - database-data:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
+#    command:
+#      - psql -U postgres
+#      - create user ${POSTGRES_USER} with password '${POSTGRES_PASSWORD}';
+#      - create database ${POSTGRES_DB};
+#      - grant all privileges on database ${POSTGRES_DB} to ${POSTGRES_USER}
+  api:
+    restart: always
+    build:
+      context: ../../review
+      dockerfile: api.Dockerfile
+    network_mode: host
 
 volumes:
   database-data:
-
-networks:
-  default:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.31.155.0/24
