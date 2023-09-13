@@ -61,21 +61,6 @@ export function StrengthsWeaknessesForm(props: Props) {
             </SectionGuide>
           </Grid>
 
-          <DictInputItem field="strengths">
-            <Grid item xs={12}>
-              <StrengthsOrWeaknesses
-                maxLength={3}
-                title={
-                  isSelfReview
-                    ? i18n._('The most important characteristics or effective behaviors that I should maintain')
-                    : i18n._('The most important characteristics or effective behaviors that he/she should maintain')
-                }
-                label={isSelfReview ? i18n._('What to continue doing') : i18n._('What should he/she continue doing')}
-              />
-              <ArrayValuePrompt value={props.initialValue?.strengths} equal={arrayEqual} />
-            </Grid>
-          </DictInputItem>
-
           <DictInputItem field="weaknesses">
             <Grid item xs={12}>
               <StrengthsOrWeaknesses

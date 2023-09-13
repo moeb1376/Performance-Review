@@ -36,7 +36,7 @@ msgstr "مرورکنندگانی که اینجا انتخاب می‌کنی، م
 #: src/pages/peer-review-page/EndEvaluationDialogContent/AchievementsContent.tsx:13
 #: src/pages/peer-review-page/PeerReviewPage.tsx:45
 #: src/pages/result-page/ResultPage.tsx:42
-#: src/pages/self-review-page/SelfReviewPage.tsx:22
+#: src/pages/self-review-page/SelfReviewPage.tsx:23
 msgid "Achievements"
 msgstr "فعالیت‌ها"
 
@@ -83,11 +83,12 @@ msgstr "آیا مطمئنی که میخوای ارزیابی ‌{name} رو تم
 msgid "Cancel"
 msgstr "لغو"
 
+#: src/pages/competencies-page/CompetenciesPage.tsx:29
 #: src/pages/manager-adjustment-page/ManagerAdjustmentPage.tsx:35
 #: src/pages/manager-review-page/ManagerReviewPage.tsx:38
 #: src/pages/manager-review-page/ManagerReviewPrintPage.tsx:42
 #: src/pages/peer-review-page/PeerReviewPage.tsx:37
-#: src/pages/self-review-page/SelfReviewPage.tsx:31
+#: src/pages/self-review-page/SelfReviewPage.tsx:33
 #: src/stories/decorators/promptDecorator.tsx:7
 msgid "Changes you made may not be saved."
 msgstr "یعنی بدون ذخیره تغییرات می‌خوای بری؟؟"
@@ -100,6 +101,10 @@ msgstr "در گام اول با مدیرت مشورت کن و عمدهٔ فعا�
 #: src/pages/manager-review-dashboard/TableFilters.tsx:14
 msgid "Colleague name"
 msgstr "نام همکار"
+
+#: src/pages/self-review-page/SelfReviewPage.tsx:24
+msgid "Competencies"
+msgstr "شایستگی ها"
 
 #: src/shared/full-page-error/FullPageError.stories.tsx:9
 msgid "Criteria"
@@ -131,7 +136,7 @@ msgstr "در حال انجام"
 #: src/pages/peer-review-page/EndEvaluationDialogContent/DominantCharacteristicsContent.tsx:11
 #: src/pages/peer-review-page/PeerReviewPage.tsx:47
 #: src/pages/result-page/ResultPage.tsx:43
-#: src/pages/self-review-page/SelfReviewPage.tsx:23
+#: src/pages/self-review-page/SelfReviewPage.tsx:25
 msgid "Dominant Characteristics"
 msgstr "ویژگی‌های بارز"
 
@@ -323,6 +328,15 @@ msgstr "سامانه مرور عملکرد"
 msgid "Persian"
 msgstr "فارسی"
 
+#: src/pages/competencies-page/CompetenciesPage.tsx:20
+msgid "Planing and Organizing"
+msgstr "برنامه ریزی و سازماندهی"
+
+#: src/pages/competencies-page/CompetenciesPage.tsx:19
+#: src/pages/problem-solving-page/ProblemSolvingPage.tsx:14
+msgid "Problem solving"
+msgstr "حل مساله"
+
 #: src/pages/idle-page/IdlePage.tsx:10
 msgid "Programmers are typing..."
 msgstr "برنامه‌نویسان در حال تایپند...‌"
@@ -480,7 +494,7 @@ msgstr "قسمت‌هایی که کامل نیستند"
 msgid "The project review name already exists."
 msgstr "نام فعالیت تکراری است"
 
-#: src/shared/those-who-did-not-comment/ThoseWhoDidNotComment.tsx:52
+#: src/shared/those-who-did-not-comment/ThoseWhoDidNotComment.tsx:51
 msgid "Those who did not comment"
 msgstr "کسانی که نظر ندادند"
 

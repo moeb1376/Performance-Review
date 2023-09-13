@@ -16,7 +16,10 @@ export function TabLink(props: Props) {
 
 const styles = (theme: Theme) =>
   createStyles({
-    root: {},
+    root: {
+      padding: '7px 10px',
+      minWidth: 'auto',
+    },
     labelIcon: {},
     textColorInherit: {},
     textColorPrimary: {},

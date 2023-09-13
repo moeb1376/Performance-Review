@@ -35,7 +35,6 @@ export function MainContainer(props: Props) {
     hasStarted,
     phase,
   ]);
-
   return (
     <DashboardLayout>
       <BrandRegion>

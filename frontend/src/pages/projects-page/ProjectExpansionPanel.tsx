@@ -6,7 +6,6 @@ import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary } from 'sr
 import { FCProps } from 'src/shared/types/FCProps';
 import { FormChangeDetector } from 'src/shared/form-change-detector';
 import { ReviewersInputProps } from 'src/shared/reviewers-input/ReviewersInput';
-import { i18n } from '@lingui/core';
 import { useDialog } from 'src/shared/hooks';
 import { useFragment } from 'react-relay/hooks';
 
@@ -46,23 +45,29 @@ export function ProjectExpansionPanel(props: Props) {
 
   return (
     <FormChangeDetector>
-      <ExpansionPanel expanded={isExpanded} onChange={handleExpanded}>
+      <ExpansionPanel
+        expanded={isExpanded}
+        onChange={handleExpanded}
+        style={{ border: '1px dashed #C9CBD1', borderRadius: '8px', margin: 0 }}
+      >
         <ExpansionPanelSummary>
-          <Box display="flex" alignItems="center">
-            <Typography variant="h6">
-              {projectReview.projectName}
-              {!projectReview.consultedWithManager ? (
-                <Typography variant="caption" color="error" component="span">
-                  {` (${i18n._('The manager has not been consulted')})`}
-                </Typography>
-              ) : null}
-            </Typography>
-            {isExpanded && (
-              <IconButton onClick={handleShowModal}>
-                <EditIcon />
-              </IconButton>
-            )}
-          </Box>
+          {!isExpanded && (
+            <Box display="flex" alignItems="center">
+              <Typography variant="h6">
+                {projectReview.projectName}
+                {/* {!projectReview.consultedWithManager ? (
+               <Typography variant="caption" color="error" component="span">
+                 {` (${i18n._('The manager has not been consulted')})`}
+               </Typography>
+             ) : null} */}
+              </Typography>
+              {isExpanded && (
+                <IconButton onClick={handleShowModal}>
+                  <EditIcon />
+                </IconButton>
+              )}
+            </Box>
+          )}
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <ProjectForm
