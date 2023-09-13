@@ -2,6 +2,7 @@ import graphql from 'babel-plugin-relay/macro';
 import React, { Fragment, useCallback, useContext, useState } from 'react';
 import { Box, FormControlLabel, Grid, Switch, Typography } from '@material-ui/core';
 import { FCProps } from 'src/shared/types/FCProps';
+import { FormChangeDetector, useFormChangeDetectorContext } from 'src/shared/form-change-detector';
 import { MDXContext } from '@mdx-js/react';
 import { SectionGuide } from 'src/shared/section-guide';
 import { i18n } from '@lingui/core';
@@ -115,7 +116,7 @@ export default function ProjectsPage(props: Props) {
           <Grid item xs={12}>
             <FormControlLabel
               style={{ float: 'left' }}
-              control={<Switch checked={showGuide} onChange={() => setShowGuide((prv) => !prv)} />}
+              control={<Switch color="primary" checked={showGuide} onChange={() => setShowGuide((prv) => !prv)} />}
               label="راهنما"
             />
           </Grid>
@@ -131,15 +132,17 @@ export default function ProjectsPage(props: Props) {
             >
               {projectReviews.map((projectReview) => {
                 return (
-                  <ProjectExpansionPanel
-                    key={projectReview.id}
-                    projectReview={projectReview}
-                    initialProjectIds={initialProjectIds}
-                    saveProject={saveProject}
-                    deleteProject={deleteProject}
-                    users={data.viewer.activeRound?.participants ?? []}
-                    maximumProjectReviewers={data.viewer.activeRound.maxReviewers}
-                  />
+                  <FormChangeDetector>
+                    <ProjectExpansionPanel
+                      key={projectReview.id}
+                      projectReview={projectReview}
+                      initialProjectIds={initialProjectIds}
+                      saveProject={saveProject}
+                      deleteProject={deleteProject}
+                      users={data.viewer.activeRound?.participants ?? []}
+                      maximumProjectReviewers={data.viewer.activeRound.maxReviewers}
+                    />
+                  </FormChangeDetector>
                 );
               })}
             </Box>

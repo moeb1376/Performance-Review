@@ -1,5 +1,5 @@
 import React, { Fragment, Suspense } from 'react';
-import { Box, Button, Grid } from '@material-ui/core';
+import { Box, Button, Grid, Typography } from '@material-ui/core';
 import { FormChangeDetector } from 'src/shared/form-change-detector';
 import { FormChangePrompt } from 'src/shared/form-change-prompt';
 import { FullPageSpinner } from 'src/shared/loading';
@@ -8,7 +8,7 @@ import { TabLink } from 'src/shared/tab';
 import { Tabs } from 'src/shared/tabs';
 import { i18n } from '@lingui/core';
 
-import CompetenciesForm from '../problem-solving-page/ProblemSolvingPage';
+import CompetenciesForm from './CompetenciesForm';
 import { items } from '../self-review-page/DevelopingCompetencies';
 
 interface Props {}
@@ -35,7 +35,12 @@ export default function CompetenciesPage(props: Props) {
   return (
     <Fragment>
       <Box>
-        <Grid container spacing={4}>
+        <Grid container spacing={4} style={{ padding: 12 }}>
+          <Grid item xs={12}>
+            <Typography variant="h5" style={{ marginRight: 6 }}>
+              {i18n._('Competencies')}
+            </Typography>
+          </Grid>
           <Grid item xs={12}>
             <Tabs value={tab ?? 'problem-solving'} centered={false}>
               {items.map((item) => (
@@ -65,7 +70,7 @@ export default function CompetenciesPage(props: Props) {
           </Grid>
         </Grid>
       </Box>
-      <Box padding={2} display={'flex'} justifyContent={'flex-end'} style={{ gap: '8px' }}>
+      <Box padding={4} display={'flex'} justifyContent={'flex-end'} style={{ gap: '8px' }}>
         <Button variant="outlined" onClick={handlePreviousTab} disabled={isActive === 0}>
           قبلی
         </Button>

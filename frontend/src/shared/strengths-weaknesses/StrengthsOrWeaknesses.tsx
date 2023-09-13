@@ -34,7 +34,7 @@ export function StrengthsOrWeaknesses({ title, maxLength, label, ...props }: Pro
     <Grid container spacing={2}>
       {title ? (
         <Grid item xs={12}>
-          <Typography variant="h5" gutterBottom>
+          <Typography variant="h6" gutterBottom>
             {title}
           </Typography>
         </Grid>
@@ -63,9 +63,7 @@ export function StrengthsOrWeaknesses({ title, maxLength, label, ...props }: Pro
               />
             </Box>
           </Grid>
-          <Grid item xs={5}>
-            gergre
-          </Grid>
+          <Grid item xs={5}></Grid>
         </ArrayOutput>
       </ArrayInput>
     </Grid>

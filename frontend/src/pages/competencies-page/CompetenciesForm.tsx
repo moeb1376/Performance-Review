@@ -29,9 +29,11 @@ export default function CompetenciesForm(props: Props) {
 
       <Forminator onSubmit={(value) => console.log(value)}>
         <Grid item xs={3}>
-          <Typography variant={'body1'}>درجه ارزیابی</Typography>
+          <Typography variant={'body1'} style={{ marginBottom: 8 }}>
+            درجه ارزیابی
+          </Typography>
 
-          <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+          <Rating name="half-rating" size="large" defaultValue={2.5} precision={0.5} />
         </Grid>
         <Grid item xs={12}>
           <LimitedTextAreaInput label="text" variant="outlined" rows={4} maxChars={50} fullWidth />

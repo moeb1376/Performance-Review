@@ -24,7 +24,6 @@ import { transformAnswersToFormData } from 'src/shared/utils/transformAnswers';
 import { useAuthGuardUser } from 'src/core/auth';
 import { useFormDirty } from 'src/shared/form-change-detector';
 import { useFragment } from 'react-relay/hooks';
-import { useFragmentLens } from 'src/shared/forminator/core/fragment-lens/useFragmentLens';
 import { useRoundQuestions } from 'src/core/round-questions';
 
 import { DeleteProjectReviewMutationInput } from './__generated__/deleteProjectReviewMutation.graphql';
@@ -95,8 +94,6 @@ export function ProjectForm(props: Props) {
   }, [onDelete, projectReview]);
 
   const dirty = useFormDirty();
-  const lens = useFragmentLens();
-  console.log(lens);
 
   return (
     <>
@@ -111,17 +108,7 @@ export function ProjectForm(props: Props) {
             <DictInputItem field="projectReviewId">
               <ConstantInput />
             </DictInputItem>
-            {/* <Grid item xs={12}>
-            <Typography>{i18n._('How effective were you in this project?')}</Typography>
-          </Grid> */}
-            {/* <Grid item xs={12}>
-            <DictInputItem field="rating">
-            <Box width={240}>
-            <Rating inputLabel={i18n._('My evaluation')} type="self" />
-            <FragmentPrompt value={initialValue.rating || null} />
-            </Box>
-            </DictInputItem>
-          </Grid> */}
+
             {selfReviewProjectQuestions.map((question) => (
               <Grid key={question.id} item xs={12}>
                 <Question question={question} formData={initialValue} />
