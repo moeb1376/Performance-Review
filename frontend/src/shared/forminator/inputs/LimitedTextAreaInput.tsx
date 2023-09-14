@@ -43,7 +43,7 @@ function LimitedTextAreaInput(props: Props) {
     [setValue, maxChars],
   );
 
-  const showCounter = value.length >= counterDisplayThreshold;
+  const showCounter = value?.length >= counterDisplayThreshold;
 
   return (
     <Fragment>

@@ -1,9 +1,9 @@
 import graphql from 'babel-plugin-relay/macro';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ActionBar } from 'src/shared/action-bar';
 import { DictInput, DictInputItem, Forminator, SubmitButton } from 'src/shared/forminator';
 import { FCProps } from 'src/shared/types/FCProps';
-import { Grid } from '@material-ui/core';
+import { FormControlLabel, Grid, Switch, Typography } from '@material-ui/core';
 import { MDXContext } from '@mdx-js/react';
 import { MDXPropsProvider } from 'src/shared/mdx-provider/MDXPropsProvider';
 import { SectionGuide } from 'src/shared/section-guide';
@@ -44,40 +44,25 @@ export function StrengthsWeaknessesForm(props: Props) {
   const components = useContext(MDXContext);
   const user = useFragment(fragmentUserNode, props.user);
   const dirty = useFormDirty();
+  const [showGuide, setShowGuide] = useState(true);
 
   return (
     <Forminator onSubmit={onSubmit} initialValue={props.initialValue}>
       <Grid container spacing={4}>
+        <Grid item xs={12}>
+          <FormControlLabel
+            style={{ float: 'left' }}
+            control={<Switch color="primary" checked={showGuide} onChange={() => setShowGuide((prv) => !prv)} />}
+            label="راهنما"
+          />
+        </Grid>
         <DictInput>
-          <Grid item xs={12}>
-            <SectionGuide>
-              {isSelfReview ? (
-                <DescriptionContentSelfReview components={components} />
-              ) : (
-                <MDXPropsProvider<UserType | null> value={user}>
-                  <DescriptionContentPeerReview components={components} />
-                </MDXPropsProvider>
-              )}
-            </SectionGuide>
-          </Grid>
-
-          <DictInputItem field="strengths">
-            <Grid item xs={12}>
-              <StrengthsOrWeaknesses
-                maxLength={3}
-                title={
-                  isSelfReview
-                    ? i18n._('The most important characteristics or effective behaviors that I should maintain')
-                    : i18n._('The most important characteristics or effective behaviors that he/she should maintain')
-                }
-                label={isSelfReview ? i18n._('What to continue doing') : i18n._('What should he/she continue doing')}
-              />
-              <ArrayValuePrompt value={props.initialValue?.strengths} equal={arrayEqual} />
-            </Grid>
-          </DictInputItem>
-
           <DictInputItem field="weaknesses">
-            <Grid item xs={12}>
+            <Grid item xs={showGuide ? 8 : 12}>
+              <Typography variant="h3" style={{ marginBottom: 32 }}>
+                {i18n._('Dominant Characteristics')}
+              </Typography>
+
               <StrengthsOrWeaknesses
                 maxLength={3}
                 title={
@@ -90,6 +75,19 @@ export function StrengthsWeaknessesForm(props: Props) {
               <ArrayValuePrompt value={props.initialValue?.weaknesses} equal={arrayEqual} />
             </Grid>
           </DictInputItem>
+          {showGuide && (
+            <Grid item xs={4}>
+              <SectionGuide>
+                {isSelfReview ? (
+                  <DescriptionContentSelfReview components={components} />
+                ) : (
+                  <MDXPropsProvider<UserType | null> value={user}>
+                    <DescriptionContentPeerReview components={components} />
+                  </MDXPropsProvider>
+                )}
+              </SectionGuide>
+            </Grid>
+          )}
         </DictInput>
         <StickyBottomPaper>
           <ActionBar>

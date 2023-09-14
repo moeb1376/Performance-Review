@@ -1,21 +1,20 @@
 import graphql from 'babel-plugin-relay/macro';
 import React, { useCallback, useMemo } from 'react';
 import { ActionBar } from 'src/shared/action-bar';
-import { Box, Grid, Typography } from '@material-ui/core';
+import { ConfirmButton } from 'src/shared/confirm-button';
 import {
-  CheckboxInput,
   ConstantInput,
   DictInput,
   DictInputItem,
   Forminator,
   FragmentPrompt,
+  StringInput,
   SubmitButton,
 } from 'src/shared/forminator';
-import { ConfirmButton } from 'src/shared/confirm-button';
 import { DangerButton } from 'src/shared/danger-button';
 import { FCProps } from 'src/shared/types/FCProps';
+import { Grid } from '@material-ui/core';
 import { Question } from 'src/shared/DynamicFields';
-import { Rating } from 'src/shared/rating';
 import { ReviewersInput } from 'src/shared/reviewers-input';
 import { ReviewersInputProps } from 'src/shared/reviewers-input/types';
 import { arrayEqualSort } from 'src/shared/utils/arrayEqualSort';
@@ -97,70 +96,57 @@ export function ProjectForm(props: Props) {
   const dirty = useFormDirty();
 
   return (
-    <Forminator onSubmit={onSubmit} initialValue={initialValue}>
-      <Grid container spacing={3}>
-        <DictInput>
-          <DictInputItem field="projectReviewId">
-            <ConstantInput />
-          </DictInputItem>
-          <Grid item xs={12}>
-            <Typography>{i18n._('How effective were you in this project?')}</Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <DictInputItem field="rating">
-              <Box width={240}>
-                <Rating inputLabel={i18n._('My evaluation')} type="self" />
-                <FragmentPrompt value={initialValue.rating || null} />
-              </Box>
-            </DictInputItem>
-          </Grid>
-          {selfReviewProjectQuestions.map((question) => (
-            <Grid key={question.id} item xs={12}>
-              <Question question={question} formData={initialValue} />
+    <>
+      <Forminator onSubmit={onSubmit} initialValue={initialValue}>
+        <Grid container spacing={3}>
+          <DictInput>
+            <Grid item xs={12}>
+              <DictInputItem field="projectName">
+                <StringInput variant="outlined" label={i18n._('Project title')} fullWidth />
+              </DictInputItem>
             </Grid>
-          ))}
+            <DictInputItem field="projectReviewId">
+              <ConstantInput />
+            </DictInputItem>
+
+            {selfReviewProjectQuestions.map((question) => (
+              <Grid key={question.id} item xs={12}>
+                <Question question={question} formData={initialValue} />
+              </Grid>
+            ))}
+            <Grid item xs={12}>
+              <DictInputItem field="reviewersId">
+                <ReviewersInput
+                  label={i18n._('Reviewers (maximum {num})', { num: maximumProjectReviewers })}
+                  users={props.users}
+                  excludes={userIds}
+                  helperText={i18n._('**Coordinate reviewers with your manager (maximum {num} reviewers)', {
+                    num: maximumProjectReviewers,
+                  })}
+                  maximumReviewers={maximumProjectReviewers}
+                />
+                <FragmentPrompt value={initialValue.reviewersId || []} equal={arrayEqualSort} />
+              </DictInputItem>
+            </Grid>
+          </DictInput>
           <Grid item xs={12}>
-            <DictInputItem field="reviewersId">
-              <ReviewersInput
-                label={i18n._('Reviewers (maximum {num})', { num: maximumProjectReviewers })}
-                users={props.users}
-                excludes={userIds}
-                helperText={i18n._('**Coordinate reviewers with your manager (maximum {num} reviewers)', {
-                  num: maximumProjectReviewers,
+            <ActionBar>
+              <ConfirmButton
+                buttonText={i18n._('Delete')}
+                onConfirm={handleDelete}
+                text={i18n._('Are you sure you want to delete {projectName} review?', {
+                  projectName: projectReview.projectName,
                 })}
-                maximumReviewers={maximumProjectReviewers}
+                ConfirmComponent={DangerButton}
+                confirmProps={{ variant: 'contained' }}
               />
-              <FragmentPrompt value={initialValue.reviewersId || []} equal={arrayEqualSort} />
-            </DictInputItem>
+              <SubmitButton variant="contained" color="primary" disabled={!dirty}>
+                {i18n._('Save')}
+              </SubmitButton>
+            </ActionBar>
           </Grid>
-          <Grid item xs={12}>
-            <DictInputItem field="consultedWithManager">
-              <CheckboxInput
-                color="primary"
-                label={i18n._('I consulted with my manager')}
-                initialValue={initialValue.consultedWithManager}
-              />
-              <FragmentPrompt value={initialValue.consultedWithManager} />
-            </DictInputItem>
-          </Grid>
-        </DictInput>
-        <Grid item xs={12}>
-          <ActionBar>
-            <ConfirmButton
-              buttonText={i18n._('Delete')}
-              onConfirm={handleDelete}
-              text={i18n._('Are you sure you want to delete {projectName} review?', {
-                projectName: projectReview.projectName,
-              })}
-              ConfirmComponent={DangerButton}
-              confirmProps={{ variant: 'contained' }}
-            />
-            <SubmitButton variant="contained" color="primary" disabled={!dirty}>
-              {i18n._('Save')}
-            </SubmitButton>
-          </ActionBar>
         </Grid>
-      </Grid>
-    </Forminator>
+      </Forminator>
+    </>
   );
 }

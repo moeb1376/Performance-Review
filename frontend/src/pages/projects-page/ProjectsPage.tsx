@@ -1,7 +1,8 @@
 import graphql from 'babel-plugin-relay/macro';
 import React, { Fragment, useCallback, useContext, useState } from 'react';
-import { Box, Grid } from '@material-ui/core';
+import { Box, FormControlLabel, Grid, Switch, Typography } from '@material-ui/core';
 import { FCProps } from 'src/shared/types/FCProps';
+import { FormChangeDetector, useFormChangeDetectorContext } from 'src/shared/form-change-detector';
 import { MDXContext } from '@mdx-js/react';
 import { SectionGuide } from 'src/shared/section-guide';
 import { i18n } from '@lingui/core';
@@ -62,7 +63,7 @@ export default function ProjectsPage(props: Props) {
   const deleteProjectReview = useDeleteProjectReview();
   const components = useContext(MDXContext);
   const { selfReviewProjectQuestions } = useRoundQuestions();
-
+  const [showGuide, setShowGuide] = useState(true);
   const projectReviews = reverse(data.viewer.projectReviews);
   const canAddNewProject = projectReviews.length < data.viewer.activeRound.maxProjectReviews;
 
@@ -82,7 +83,7 @@ export default function ProjectsPage(props: Props) {
   );
 
   const addProjectReview = useCallback(
-    ({ projectName }: AddProjectFormData) => {
+    ({ projectName = 'f' }: AddProjectFormData) => {
       if (canAddNewProject && projectName !== null && !!projectName.length) {
         const input = { projectName };
         return createProjectReview({ input }).then((res) => {
@@ -113,29 +114,48 @@ export default function ProjectsPage(props: Props) {
       <Box padding={4}>
         <Grid container spacing={4}>
           <Grid item xs={12}>
-            <SectionGuide>
-              <DescriptionContent components={components} />
-            </SectionGuide>
+            <FormControlLabel
+              style={{ float: 'left' }}
+              control={<Switch color="primary" checked={showGuide} onChange={() => setShowGuide((prv) => !prv)} />}
+              label="راهنما"
+            />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={showGuide ? 8 : 12}>
+            <Typography variant="h3">{i18n._('Projects')}</Typography>
+            <Box
+              paddingY={2}
+              display={'flex'}
+              flexDirection={'column'}
+              style={{
+                gap: '32px',
+              }}
+            >
+              {projectReviews.map((projectReview) => {
+                return (
+                  <FormChangeDetector>
+                    <ProjectExpansionPanel
+                      key={projectReview.id}
+                      projectReview={projectReview}
+                      initialProjectIds={initialProjectIds}
+                      saveProject={saveProject}
+                      deleteProject={deleteProject}
+                      users={data.viewer.activeRound?.participants ?? []}
+                      maximumProjectReviewers={data.viewer.activeRound.maxReviewers}
+                    />
+                  </FormChangeDetector>
+                );
+              })}
+            </Box>
             <AddProjectForm onSubmit={addProjectReview} canAddNewProject={canAddNewProject} />
           </Grid>
+          {showGuide && (
+            <Grid item xs={4}>
+              <SectionGuide>
+                <DescriptionContent components={components} />
+              </SectionGuide>
+            </Grid>
+          )}
         </Grid>
-      </Box>
-      <Box paddingY={2}>
-        {projectReviews.map((projectReview) => {
-          return (
-            <ProjectExpansionPanel
-              key={projectReview.id}
-              projectReview={projectReview}
-              initialProjectIds={initialProjectIds}
-              saveProject={saveProject}
-              deleteProject={deleteProject}
-              users={data.viewer.activeRound?.participants ?? []}
-              maximumProjectReviewers={data.viewer.activeRound.maxReviewers}
-            />
-          );
-        })}
       </Box>
     </Fragment>
   );

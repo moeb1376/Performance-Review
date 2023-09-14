@@ -17,24 +17,22 @@ export function getMenuItems(phase: Phase, user: User): NavbarMenuItem[] {
         },
       },
       {
-        text: i18n._('Self Review'),
         link: {
-          to: '/self-review',
+          to: '/self-review/achievements',
         },
-        children: [
-          {
-            link: {
-              to: '/self-review/achievements',
-            },
-            text: i18n._('Achievements'),
-          },
-          {
-            link: {
-              to: '/self-review/dominant-characteristics',
-            },
-            text: i18n._('Dominant Characteristics'),
-          },
-        ],
+        text: i18n._('Achievements'),
+      },
+      {
+        link: {
+          to: '/self-review/competencies',
+        },
+        text: i18n._('Competencies'),
+      },
+      {
+        link: {
+          to: '/self-review/dominant-characteristics',
+        },
+        text: i18n._('Dominant Characteristics'),
       },
     ];
   }

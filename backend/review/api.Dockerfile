@@ -1,5 +1,5 @@
 # pull official base image
-FROM python:3.10
+FROM python:3.6.9
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -21,7 +21,7 @@ RUN poetry install -n --no-dev
 
 # now actually copy the real contents of my app
 COPY . .
-RUN touch .env
+COPY .env .env
 
 EXPOSE 8000
 
