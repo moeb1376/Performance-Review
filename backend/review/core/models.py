@@ -1,8 +1,11 @@
+import datetime
+
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
+from model_utils.models import TimeStampedModel
 
 from accounts.models import User
-from core.enums import Evaluation, Phase, State, QuestionType
+from core.enums import Evaluation, Phase, State, QuestionType, CompetenciesEvaluation
 
 MAX_TEXT_LENGTH = 10000
 
@@ -45,6 +48,7 @@ class Round(models.Model):
     reviewers_are_anonymous = models.BooleanField(default=True)
     max_project_reviews = models.IntegerField(null=False, blank=False, default=5)
     max_reviewers = models.IntegerField(null=False, blank=False, default=5)
+    max_competency_target = models.IntegerField(null=False, blank=False, default=2)
 
     self_review_project_questions = models.ManyToManyField(Question, blank=True, related_name='self_reviews_asked')
     peer_review_project_questions = models.ManyToManyField(Question, blank=True, related_name='peer_reviews_asked')
@@ -95,6 +99,18 @@ class ProjectReview(models.Model):
     class Meta:
         ordering = ['created_at']
 
+    @classmethod
+    def get_draft_project_name(cls, reviewee: User):
+        count_number = cls.objects.filter(project_name__contains='پیش‌نویس',
+                                          reviewee__employee_id=reviewee.employee_id).count()
+        return f"پیش‌نویس_{count_number}_{reviewee.name}"
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        if not self.project_name:
+            self.project_name = self.get_draft_project_name(self.reviewee)
+        return super().save(force_insert=force_insert, force_update=force_update, using=using,
+                            update_fields=update_fields)
+
 
 class ProjectComment(models.Model):
     project_review = models.ForeignKey(ProjectReview, on_delete=models.PROTECT)
@@ -117,14 +133,13 @@ class ManagerProjectComment(models.Model):
         ordering = ['created_at']
 
 
-class PersonReview(models.Model):
+class PersonReview(TimeStampedModel):
     round = models.ForeignKey(Round, on_delete=models.PROTECT)
     reviewee = models.ForeignKey(User, on_delete=models.PROTECT, related_name='person_reviews')
     reviewer = models.ForeignKey(User, on_delete=models.PROTECT, related_name='authored_person_reviews')
+    # reviewers = models.ManyToManyField(User, blank=True, related_name='person_reviews_to_comment')
 
     strengths = ArrayField(models.TextField(), size=3, null=True, blank=True)
-    weaknesses = ArrayField(models.TextField(), size=3, null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
 
     state = models.IntegerField(choices=State.choices(), default=State.TODO.value)
 
@@ -141,12 +156,13 @@ class PersonReview(models.Model):
     leadership_comment = models.TextField(null=True, blank=True)
     presence_rating = models.IntegerField(choices=Evaluation.choices(), null=True, blank=True)
     presence_comment = models.TextField(null=True, blank=True)
+    weaknesses = ArrayField(models.TextField(), size=3, null=True, blank=True)
 
     def is_self_review(self):
         return self.reviewee == self.reviewer
 
     class Meta:
-        ordering = ['created_at']
+        ordering = ['created']
 
 
 class ManagerPersonReview(models.Model):
@@ -203,3 +219,20 @@ class Participation(models.Model):
     has_started_peer_review = models.BooleanField(default=False, null=False, blank=False)
     has_started_manager_review = models.BooleanField(default=False, null=False, blank=False)
     has_started_results = models.BooleanField(default=False, null=False, blank=False)
+
+
+class Competencies(models.Model):
+    name = models.CharField(max_length=255)
+    help_text = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+class CompetenciesAnswers(TimeStampedModel):
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    competencies = models.ForeignKey(Competencies, on_delete=models.PROTECT)
+    rating = models.IntegerField(choices=CompetenciesEvaluation.choices(), blank=False, null=True)
+    evidence = models.TextField(blank=False, null=False)
+    is_target = models.BooleanField(default=False, blank=True)
+

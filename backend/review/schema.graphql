@@ -1,24 +1,145 @@
-schema {
-  query: Query
-  mutation: Mutation
-}
-
-input AdjustProjectReviewMutationInput {
-  projectReviewId: ID!
-  approvedByManager: Boolean
-  reviewersId: [ID!]
-  clientMutationId: String
-}
-
-type AdjustProjectReviewMutationPayload {
+type Query {
   viewer: ViewerNode!
-  projectReview: ProjectReviewNode
-  clientMutationId: String
 }
 
-input AnswerInput {
-  questionId: ID!
-  value: String
+type ViewerNode implements Node {
+  """The ID of the object"""
+  id: ID!
+  users: [UserNode!]!
+  user(
+    """The ID of the object"""
+    id: ID!
+  ): UserNode
+  me: UserNode
+  round(
+    """The ID of the object"""
+    id: ID!
+  ): RoundNode
+  activeRound: RoundNode!
+  rounds: [RoundNode!]!
+  managerProjectComment(
+    """The ID of the object"""
+    id: ID!
+  ): ManagerProjectCommentNode
+  managerProjectComments: [ManagerProjectCommentNode!]!
+  managerPersonReview(
+    """The ID of the object"""
+    id: ID!
+  ): ManagerPersonReviewNode
+  managerPersonReviews: [ManagerPersonReviewNode!]!
+  projectComment(
+    """The ID of the object"""
+    id: ID!
+  ): ProjectCommentNode
+  projectComments: [ProjectCommentNode!]!
+  competencie(
+    """The ID of the object"""
+    id: ID!
+  ): CompetenciesNode
+  competencies: [CompetenciesNode!]!
+  competenciesUserAnswers: [CompetenciesAnswersNode!]!
+  projectReview(
+    """The ID of the object"""
+    id: ID!
+  ): ProjectReviewNode
+  projectReviews(revieweeId: ID): [ProjectReviewNode!]!
+  usersToReview: [UserNode!]!
+  settings: SettingsNode!
+  personReview(
+    """The ID of the object"""
+    id: ID!
+  ): PersonReviewNode
+  personReviews: [PersonReviewNode!]!
+  node(id: ID!): Node
+}
+
+"""An object with an ID"""
+interface Node {
+  """The ID of the object"""
+  id: ID!
+}
+
+type UserNode implements Node {
+  """Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."""
+  username: String!
+  firstName: String!
+  lastName: String!
+  manager: UserNode
+  avatarUrl: String
+  isHr: Boolean!
+
+  """The ID of the object"""
+  id: ID!
+  isManager: Boolean!
+
+  """Get (or create for self) a self person review about this user"""
+  selfPersonReview: PersonReviewNode
+
+  """Get (or create for peer) a peer person review about this user"""
+  peerPersonReview: PersonReviewNode
+
+  """List of person reviews about this user"""
+  personReviews: [PersonReviewNode!]!
+
+  """List of project reviews about this user"""
+  projectReviews: [ProjectReviewNode!]!
+
+  """Get (or create for manager) a manager person review about this user"""
+  managerPersonReview: ManagerPersonReviewNode
+  hasStarted: Boolean
+  ranking1: String
+  ranking2: String
+}
+
+type PersonReviewNode implements Node {
+  reviewee: UserNode!
+  strengths: [String!]
+  weaknesses: [String!]
+
+  """The ID of the object"""
+  id: ID!
+  state: State!
+  reviewer: UserNode
+  isSelfReview: Boolean!
+}
+
+"""An enumeration."""
+enum State {
+  TODO
+  DOING
+  DONE
+}
+
+type ProjectReviewNode implements Node {
+  projectName: String!
+  reviewee: UserNode!
+  consultedWithManager: Boolean!
+  approvedByManager: Boolean!
+
+  """The ID of the object"""
+  id: ID!
+  rating: Evaluation
+  answers: [AnswerOutput!]!
+  reviewers: [UserNode!]!
+
+  """
+  Get or create a project comment about this project review from the logged in user
+  """
+  comment: ProjectCommentNode
+  comments: [ProjectCommentNode!]!
+
+  """
+  Get (or create for manager) the manager project comment on this project review
+  """
+  managerComment: ManagerProjectCommentNode
+}
+
+"""An enumeration."""
+enum Evaluation {
+  NEEDS_IMPROVEMENT
+  MEETS_EXPECTATIONS
+  EXCEEDS_EXPECTATIONS
+  SUPERB
 }
 
 type AnswerOutput {
@@ -26,20 +147,150 @@ type AnswerOutput {
   questionId: ID!
 }
 
-input ChangePasswordMutationInput {
-  oldPassword: String!
-  newPassword: String!
-  clientMutationId: String
+type ProjectCommentNode implements Node {
+  projectReview: ProjectReviewNode!
+
+  """The ID of the object"""
+  id: ID!
+  reviewer: UserNode
+  rating: Evaluation
+  answers: [AnswerOutput!]!
 }
 
-type ChangePasswordMutationPayload {
+type ManagerProjectCommentNode implements Node {
+  projectReview: ProjectReviewNode!
+
+  """The ID of the object"""
+  id: ID!
+  rating: Evaluation
+  answers: [AnswerOutput!]!
+}
+
+type ManagerPersonReviewNode implements Node {
+  reviewee: UserNode!
+  strengths: [String!]
+  weaknesses: [String!]
+
+  """The ID of the object"""
+  id: ID!
+  overallRating: Evaluation
+}
+
+type RoundNode implements Node {
+  title: String!
+  reviewersAreAnonymous: Boolean!
+  maxProjectReviews: Int!
+  maxReviewers: Int!
+
+  """The ID of the object"""
+  id: ID!
+  phase: Phase!
+  participants: [UserNode!]!
+  selfReviewProjectQuestions: [QuestionNode!]!
+  peerReviewProjectQuestions: [QuestionNode!]!
+  managerReviewProjectQuestions: [QuestionNode!]!
+}
+
+"""An enumeration."""
+enum Phase {
+  SELF_REVIEW
+  PEER_REVIEW
+  MANAGER_REVIEW
+  RESULTS
+  IDLE
+  MANAGER_ADJUSTMENT
+}
+
+type QuestionNode implements Node {
+  label: String!
+  order: Int!
+  helpText: String
+  choices: [String!]
+
+  """For no limit, enter -1"""
+  maxChoices: Int!
+  privateAnswerToPeerReviewers: Boolean!
+  privateAnswerToReviewee: Boolean!
+
+  """The ID of the object"""
+  id: ID!
+  questionType: QuestionType!
+}
+
+"""An enumeration."""
+enum QuestionType {
+  TEXT
+  CHECKBOX_MULTIPLE
+}
+
+type CompetenciesNode implements Node {
+  name: String!
+  helpText: String!
+
+  """The ID of the object"""
+  id: ID!
+}
+
+type CompetenciesAnswersNode implements Node {
+  user: UserNode!
+  competencies: CompetenciesNode!
+  evidence: String!
+  isTarget: Boolean!
+
+  """The ID of the object"""
+  id: ID!
+  rating: CompetenciesEvaluation
+}
+
+"""An enumeration."""
+enum CompetenciesEvaluation {
+  LEVEL_1
+  LEVEL_2
+  LEVEL_3
+  LEVEL_4
+  LEVEL_5
+}
+
+type SettingsNode implements Node {
+  idlePageUrl: String
+  loginBackgroundImage: String
+  logoUrl: String
+  lightLogoUrl: String
+
+  """The ID of the object"""
+  id: ID!
+  phase: Phase!
+  startText: String
+  managerOverallReviewText: String
+}
+
+type Mutation {
+  savePersonReview(input: SavePersonReviewMutationInput!): SavePersonReviewMutationPayload!
+  createProjectReview(input: CreateProjectReviewMutationInput!): CreateProjectReviewMutationPayload!
+  editProjectReview(input: EditProjectReviewMutationInput!): EditProjectReviewMutationPayload!
+  deleteProjectReview(input: DeleteProjectReviewMutationInput!): DeleteProjectReviewMutationPayload!
+  adjustProjectReview(input: AdjustProjectReviewMutationInput!): AdjustProjectReviewMutationPayload!
+  saveProjectComment(input: SaveProjectCommentMutationInput!): SaveProjectCommentMutationPayload!
+  saveManagerPersonReview(input: SaveManagerPersonReviewMutationInput!): SaveManagerPersonReviewMutationPayload!
+  saveManagerProjectComment(input: SaveManagerProjectCommentMutationInput!): SaveManagerProjectCommentMutationPayload!
+  startReview(input: StartReviewMutationInput!): StartReviewMutationPayload!
+  competenciesAnswers(input: CompetenciesAnswersMutationInput!): CompetenciesAnswersMutationPayload!
+  login(input: LoginMutationInput!): LoginMutationPayload!
+  logout(input: LogoutMutationInput!): LogoutMutationPayload!
+  changePassword(input: ChangePasswordMutationInput!): ChangePasswordMutationPayload!
+}
+
+type SavePersonReviewMutationPayload {
   viewer: ViewerNode!
-  ok: Boolean!
+  personReview: PersonReviewNode
   clientMutationId: String
 }
 
-input CreateProjectReviewMutationInput {
-  projectName: String
+input SavePersonReviewMutationInput {
+  revieweeId: ID!
+  strengths: [String!]
+  weaknesses: [String!]
+  state: State
   clientMutationId: String
 }
 
@@ -49,14 +300,14 @@ type CreateProjectReviewMutationPayload {
   clientMutationId: String
 }
 
-input DeleteProjectReviewMutationInput {
-  projectReviewId: ID!
+input CreateProjectReviewMutationInput {
+  projectName: String
   clientMutationId: String
 }
 
-type DeleteProjectReviewMutationPayload {
+type EditProjectReviewMutationPayload {
   viewer: ViewerNode!
-  deletedProjectReviewId: ID
+  projectReview: ProjectReviewNode
   clientMutationId: String
 }
 
@@ -70,187 +321,38 @@ input EditProjectReviewMutationInput {
   clientMutationId: String
 }
 
-type EditProjectReviewMutationPayload {
+input AnswerInput {
+  questionId: ID!
+  value: String
+}
+
+type DeleteProjectReviewMutationPayload {
+  viewer: ViewerNode!
+  deletedProjectReviewId: ID
+  clientMutationId: String
+}
+
+input DeleteProjectReviewMutationInput {
+  projectReviewId: ID!
+  clientMutationId: String
+}
+
+type AdjustProjectReviewMutationPayload {
   viewer: ViewerNode!
   projectReview: ProjectReviewNode
   clientMutationId: String
 }
 
-enum Evaluation {
-  NEEDS_IMPROVEMENT
-  MEETS_EXPECTATIONS
-  EXCEEDS_EXPECTATIONS
-  SUPERB
-}
-
-input LoginMutationInput {
-  username: String!
-  password: String!
-  clientMutationId: String
-}
-
-type LoginMutationPayload {
-  viewer: ViewerNode!
-  user: UserNode
-  clientMutationId: String
-}
-
-input LogoutMutationInput {
-  clientMutationId: String
-}
-
-type LogoutMutationPayload {
-  viewer: ViewerNode!
-  clientMutationId: String
-}
-
-type ManagerPersonReviewNode implements Node {
-  reviewee: UserNode!
-  strengths: [String!]
-  weaknesses: [String!]
-  id: ID!
-  overallRating: Evaluation
-}
-
-type ManagerProjectCommentNode implements Node {
-  projectReview: ProjectReviewNode!
-  id: ID!
-  rating: Evaluation
-  answers: [AnswerOutput!]!
-}
-
-type Mutation {
-  savePersonReview(input: SavePersonReviewMutationInput!): SavePersonReviewMutationPayload!
-  createProjectReview(input: CreateProjectReviewMutationInput!): CreateProjectReviewMutationPayload!
-  editProjectReview(input: EditProjectReviewMutationInput!): EditProjectReviewMutationPayload!
-  deleteProjectReview(input: DeleteProjectReviewMutationInput!): DeleteProjectReviewMutationPayload!
-  adjustProjectReview(input: AdjustProjectReviewMutationInput!): AdjustProjectReviewMutationPayload!
-  saveProjectComment(input: SaveProjectCommentMutationInput!): SaveProjectCommentMutationPayload!
-  saveManagerPersonReview(input: SaveManagerPersonReviewMutationInput!): SaveManagerPersonReviewMutationPayload!
-  saveManagerProjectComment(input: SaveManagerProjectCommentMutationInput!): SaveManagerProjectCommentMutationPayload!
-  startReview(input: StartReviewMutationInput!): StartReviewMutationPayload!
-  login(input: LoginMutationInput!): LoginMutationPayload!
-  logout(input: LogoutMutationInput!): LogoutMutationPayload!
-  changePassword(input: ChangePasswordMutationInput!): ChangePasswordMutationPayload!
-}
-
-interface Node {
-  id: ID!
-}
-
-type PersonReviewNode implements Node {
-  reviewee: UserNode!
-  strengths: [String!]
-  weaknesses: [String!]
-  id: ID!
-  state: State!
-  reviewer: UserNode
-  isSelfReview: Boolean!
-}
-
-enum Phase {
-  SELF_REVIEW
-  PEER_REVIEW
-  MANAGER_REVIEW
-  RESULTS
-  IDLE
-  MANAGER_ADJUSTMENT
-}
-
-type ProjectCommentNode implements Node {
-  projectReview: ProjectReviewNode!
-  id: ID!
-  reviewer: UserNode
-  rating: Evaluation
-  answers: [AnswerOutput!]!
-}
-
-type ProjectReviewNode implements Node {
-  projectName: String!
-  reviewee: UserNode!
-  consultedWithManager: Boolean!
-  approvedByManager: Boolean!
-  id: ID!
-  rating: Evaluation
-  answers: [AnswerOutput!]!
-  reviewers: [UserNode!]!
-  comment: ProjectCommentNode
-  comments: [ProjectCommentNode!]!
-  managerComment: ManagerProjectCommentNode
-}
-
-type Query {
-  viewer: ViewerNode!
-}
-
-type QuestionNode implements Node {
-  label: String!
-  order: Int!
-  helpText: String
-  choices: [String!]
-  maxChoices: Int!
-  privateAnswerToPeerReviewers: Boolean!
-  privateAnswerToReviewee: Boolean!
-  id: ID!
-  questionType: QuestionType!
-}
-
-enum QuestionType {
-  TEXT
-  CHECKBOX_MULTIPLE
-}
-
-type RoundNode implements Node {
-  title: String!
-  reviewersAreAnonymous: Boolean!
-  maxProjectReviews: Int!
-  maxReviewers: Int!
-  id: ID!
-  phase: Phase!
-  participants: [UserNode!]!
-  selfReviewProjectQuestions: [QuestionNode!]!
-  peerReviewProjectQuestions: [QuestionNode!]!
-  managerReviewProjectQuestions: [QuestionNode!]!
-}
-
-input SaveManagerPersonReviewMutationInput {
-  revieweeId: ID!
-  strengths: [String!]
-  weaknesses: [String!]
-  overallRating: Evaluation
-  clientMutationId: String
-}
-
-type SaveManagerPersonReviewMutationPayload {
-  viewer: ViewerNode!
-  managerPersonReview: ManagerPersonReviewNode
-  clientMutationId: String
-}
-
-input SaveManagerProjectCommentMutationInput {
+input AdjustProjectReviewMutationInput {
   projectReviewId: ID!
-  rating: Evaluation
-  answers: [AnswerInput!]
+  approvedByManager: Boolean
+  reviewersId: [ID!]
   clientMutationId: String
 }
 
-type SaveManagerProjectCommentMutationPayload {
+type SaveProjectCommentMutationPayload {
   viewer: ViewerNode!
-  managerProjectComment: ManagerProjectCommentNode
-  clientMutationId: String
-}
-
-input SavePersonReviewMutationInput {
-  revieweeId: ID!
-  strengths: [String!]
-  weaknesses: [String!]
-  state: State
-  clientMutationId: String
-}
-
-type SavePersonReviewMutationPayload {
-  viewer: ViewerNode!
-  personReview: PersonReviewNode
+  projectComment: ProjectCommentNode
   clientMutationId: String
 }
 
@@ -261,24 +363,30 @@ input SaveProjectCommentMutationInput {
   clientMutationId: String
 }
 
-type SaveProjectCommentMutationPayload {
+type SaveManagerPersonReviewMutationPayload {
   viewer: ViewerNode!
-  projectComment: ProjectCommentNode
+  managerPersonReview: ManagerPersonReviewNode
   clientMutationId: String
 }
 
-type SettingsNode implements Node {
-  idlePageUrl: String
-  loginBackgroundImage: String
-  logoUrl: String
-  lightLogoUrl: String
-  id: ID!
-  phase: Phase!
-  startText: String
-  managerOverallReviewText: String
+input SaveManagerPersonReviewMutationInput {
+  revieweeId: ID!
+  strengths: [String!]
+  weaknesses: [String!]
+  overallRating: Evaluation
+  clientMutationId: String
 }
 
-input StartReviewMutationInput {
+type SaveManagerProjectCommentMutationPayload {
+  viewer: ViewerNode!
+  managerProjectComment: ManagerProjectCommentNode
+  clientMutationId: String
+}
+
+input SaveManagerProjectCommentMutationInput {
+  projectReviewId: ID!
+  rating: Evaluation
+  answers: [AnswerInput!]
   clientMutationId: String
 }
 
@@ -288,50 +396,54 @@ type StartReviewMutationPayload {
   clientMutationId: String
 }
 
-enum State {
-  TODO
-  DOING
-  DONE
+input StartReviewMutationInput {
+  clientMutationId: String
 }
 
-type UserNode implements Node {
+type CompetenciesAnswersMutationPayload {
+  viewer: ViewerNode!
+  competenciesAnswers: CompetenciesAnswersNode
+  clientMutationId: String
+}
+
+input CompetenciesAnswersMutationInput {
+  competenciesAnswersId: Int
+  competenciesId: Int
+  rating: CompetenciesEvaluation
+  evidence: String
+  isTarget: Boolean
+  clientMutationId: String
+}
+
+type LoginMutationPayload {
+  viewer: ViewerNode!
+  user: UserNode
+  clientMutationId: String
+}
+
+input LoginMutationInput {
   username: String!
-  firstName: String!
-  lastName: String!
-  manager: UserNode
-  avatarUrl: String
-  isHr: Boolean!
-  id: ID!
-  isManager: Boolean!
-  selfPersonReview: PersonReviewNode
-  peerPersonReview: PersonReviewNode
-  personReviews: [PersonReviewNode!]!
-  projectReviews: [ProjectReviewNode!]!
-  managerPersonReview: ManagerPersonReviewNode
-  hasStarted: Boolean
-  ranking1: String
-  ranking2: String
+  password: String!
+  clientMutationId: String
 }
 
-type ViewerNode implements Node {
-  id: ID!
-  users: [UserNode!]!
-  user(id: ID!): UserNode
-  me: UserNode
-  round(id: ID!): RoundNode
-  activeRound: RoundNode!
-  rounds: [RoundNode!]!
-  managerProjectComment(id: ID!): ManagerProjectCommentNode
-  managerProjectComments: [ManagerProjectCommentNode!]!
-  managerPersonReview(id: ID!): ManagerPersonReviewNode
-  managerPersonReviews: [ManagerPersonReviewNode!]!
-  projectComment(id: ID!): ProjectCommentNode
-  projectComments: [ProjectCommentNode!]!
-  projectReview(id: ID!): ProjectReviewNode
-  projectReviews(revieweeId: ID): [ProjectReviewNode!]!
-  usersToReview: [UserNode!]!
-  settings: SettingsNode!
-  personReview(id: ID!): PersonReviewNode
-  personReviews: [PersonReviewNode!]!
-  node(id: ID!): Node
+type LogoutMutationPayload {
+  viewer: ViewerNode!
+  clientMutationId: String
+}
+
+input LogoutMutationInput {
+  clientMutationId: String
+}
+
+type ChangePasswordMutationPayload {
+  viewer: ViewerNode!
+  ok: Boolean!
+  clientMutationId: String
+}
+
+input ChangePasswordMutationInput {
+  oldPassword: String!
+  newPassword: String!
+  clientMutationId: String
 }

@@ -10,8 +10,6 @@ from core.models import ProjectReview
 def create_project_review(project_name, reviewee):
     if not can_create_project_review(reviewee):
         return None
-    if not project_name:
-        return None
 
     project_review, created = ProjectReview.objects.get_or_create(
         round=get_active_round(),

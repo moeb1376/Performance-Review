@@ -32,7 +32,7 @@ class PersonReviewNode(DjangoObjectType):
         return get_person_review_reviewer(user, self)
 
     def resolve_is_self_review(self, info):
-        return self.is_self_review()
+        return self.is_self_review() # self mire khode model ro miyare
 
     @classmethod
     def get_node(cls, info, id):

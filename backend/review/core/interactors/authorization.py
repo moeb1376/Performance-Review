@@ -70,7 +70,9 @@ def can_create_project_review(user):
         return False
 
     active_round = get_active_round()
-    if ProjectReview.objects.filter(round=active_round, reviewee=user).count() >= active_round.max_project_reviews:
+    if (active_round.max_project_reviews != -1 and
+            ProjectReview.objects.filter(round=active_round,
+                                         reviewee=user).count() >= active_round.max_project_reviews):
         return False
     return True
 

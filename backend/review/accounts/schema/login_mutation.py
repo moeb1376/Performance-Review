@@ -26,4 +26,5 @@ class LoginMutation(WithViewer, ClientIDMutation):
             return LoginMutation(user=None)
 
         login(info.context, user)
-        return LoginMutation(user=user)
+        result = LoginMutation(user=user)
+        return result

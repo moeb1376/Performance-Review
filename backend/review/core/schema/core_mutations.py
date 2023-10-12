@@ -9,6 +9,7 @@ from core.schema.save_person_review_mutation import SavePersonReviewMutation
 from core.schema.save_project_comment_mutation import SaveProjectCommentMutation
 from core.schema.edit_project_review_mutation import EditProjectReviewMutation
 from core.schema.start_review_mutation import StartReviewMutation
+from core.schema.competencies_answers_mutation import CompetenciesAnswersMutation
 
 
 class Mutation(
@@ -23,4 +24,5 @@ class Mutation(
     save_manager_person_review = SaveManagerPersonReviewMutation.Field(required=True)
     save_manager_project_comment = SaveManagerProjectCommentMutation.Field(required=True)
     start_review = StartReviewMutation.Field(required=True)
+    competencies_answers = CompetenciesAnswersMutation.Field(required=True)
 

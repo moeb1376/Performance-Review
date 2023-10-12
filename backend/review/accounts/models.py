@@ -6,7 +6,7 @@ class User(AbstractUser):
     manager = models.ForeignKey("User", related_name='team_members', on_delete=models.SET_NULL, null=True, blank=True)
     employee_id = models.IntegerField(unique=True, null=True)
     avatar_url = models.CharField(max_length=255, null=True, blank=True)
-    ranking1 = models.CharField(max_length=10, null=True, blank=True)
+    ranking1 = models.CharField(max_length=10, null=True, blank=True) # grade sazmani va fanni
     ranking2 = models.CharField(max_length=10, null=True, blank=True)
     is_hr = models.BooleanField(default=False, null=False, blank=False)
 

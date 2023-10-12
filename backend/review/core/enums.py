@@ -8,6 +8,14 @@ class Evaluation(BaseEnum):
     SUPERB = 4
 
 
+class CompetenciesEvaluation(BaseEnum):
+    LEVEL_1 = 1
+    LEVEL_2 = 2
+    LEVEL_3 = 3
+    LEVEL_4 = 4
+    LEVEL_5 = 5
+
+
 class Phase(BaseEnum):
     SELF_REVIEW = 1
     PEER_REVIEW = 2

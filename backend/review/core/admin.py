@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from core.models import ProjectReview, PersonReview, ProjectComment, Settings, ManagerPersonReview, \
-    ManagerProjectComment, Round, Participation, Answer, Question
+    ManagerProjectComment, Round, Participation, Answer, Question, Competencies, CompetenciesAnswers
 
 
 class ProjectReviewAdmin(admin.ModelAdmin):
@@ -34,6 +34,7 @@ class ProjectCommentAdmin(admin.ModelAdmin):
 
 class PersonReviewAdmin(admin.ModelAdmin):
     list_display = ('round', 'reviewer', 'reviewee')
+    readonly_fields = ["created", "modified"]
 
 
 class ManagerProjectCommentAdmin(admin.ModelAdmin):
@@ -111,6 +112,25 @@ class AnswerAdmin(admin.ModelAdmin):
         return obj.value[:50] if obj.value else ''
 
     get_preview.short_description = 'Preview'
+
+
+@admin.register(Competencies)
+class CompetenciesAdmin(admin.ModelAdmin):
+    list_display = ["name"]
+
+
+@admin.register(CompetenciesAnswers)
+class CompetenciesAnswersAdmin(admin.ModelAdmin):
+    list_display = ["id", "view_user_name", "view_competencies_name", "rating", "is_target", "created", "modified"]
+    readonly_fields = ["created", "modified"]
+
+    @admin.display(empty_value="--")
+    def view_user_name(self, obj):
+        return obj.user.name
+
+    @admin.display(empty_value="--")
+    def view_competencies_name(self, obj):
+        return obj.competencies.name
 
 
 admin.site.register(ProjectReview, ProjectReviewAdmin)
