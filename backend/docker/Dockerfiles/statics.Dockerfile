@@ -1,4 +1,4 @@
-FROM nginx:1.16-alpine
+FROM nginx:stable-alpine3.17
 
 COPY ./staticfiles/ /usr/share/nginx/html/django-statics
 
