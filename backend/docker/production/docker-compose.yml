@@ -10,7 +10,7 @@ services:
       - gateway
     ports:
       # The HTTP port
-      - "80:80"
+      - "1080:80"
       # The Web UI (enabled by --api.insecure=true)
       - "8080:8080"
     volumes:
@@ -18,7 +18,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   front:
-    build: ../../../frontend/.
+    build:
+      context: ../../../frontend
+      dockerfile: Dockerfile
     networks:
       - gateway
     labels:
@@ -28,7 +30,7 @@ services:
 
   statics:
     build:
-      context: ../Dockerfiles
+      context: ../../review
       dockerfile: statics.Dockerfile
     networks:
       - gateway
@@ -39,7 +41,7 @@ services:
 
   api:
     build:
-      context: ../Dockerfiles
+      context: ../../review
       dockerfile: api.Dockerfile
     networks:
       - app_net
