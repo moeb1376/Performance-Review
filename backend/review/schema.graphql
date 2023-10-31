@@ -181,6 +181,7 @@ type RoundNode implements Node {
   reviewersAreAnonymous: Boolean!
   maxProjectReviews: Int!
   maxReviewers: Int!
+  maxCompetencyTarget: Int!
 
   """The ID of the object"""
   id: ID!
@@ -407,8 +408,8 @@ type CompetenciesAnswersMutationPayload {
 }
 
 input CompetenciesAnswersMutationInput {
-  competenciesAnswersId: Int
-  competenciesId: Int
+  competenciesAnswersId: ID
+  competenciesId: ID!
   rating: CompetenciesEvaluation
   evidence: String
   isTarget: Boolean

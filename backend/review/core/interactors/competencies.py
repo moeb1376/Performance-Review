@@ -1,5 +1,5 @@
-from core.models import CompetenciesAnswers, Competencies
 from core.interactors.settings import get_active_round
+from core.models import CompetenciesAnswers, Competencies
 
 
 def get_competencies_answer_rating(competencies_answer):
@@ -13,7 +13,7 @@ def get_all_competencies_user_answers(user):
 
 
 def get_competencies_answers(user, id):
-    return get_all_competencies_user_answers(user=user).filter(id=id)
+    return get_all_competencies_user_answers(user=user).get(id=id)
 
 
 def get_all_competencies_user(user):
@@ -23,7 +23,7 @@ def get_all_competencies_user(user):
 
 
 def get_competencies(user, id):
-    return get_all_competencies_user(user=user).filter(id=id)
+    return get_all_competencies_user(user=user).get(id=id)
 
 
 def create_competencies_answers(user, competencies_id, rating, evidence, is_target):
