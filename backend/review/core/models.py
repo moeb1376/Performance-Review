@@ -165,6 +165,11 @@ class PersonReview(TimeStampedModel):
         ordering = ['created']
 
 
+class PersonReviewMention(models.Model):
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='author_mention_person_reviews')
+    mention_user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='mentioned_person_reviews')
+
+
 class ManagerPersonReview(models.Model):
     round = models.ForeignKey(Round, on_delete=models.PROTECT)
     reviewee = models.ForeignKey(User, on_delete=models.PROTECT, related_name='manager_person_reviews')
@@ -232,7 +237,6 @@ class Competencies(models.Model):
 class CompetenciesAnswers(TimeStampedModel):
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     competencies = models.ForeignKey(Competencies, on_delete=models.PROTECT)
-    rating = models.IntegerField(choices=CompetenciesEvaluation.choices(), blank=False, null=True)
+    rating = models.FloatField(choices=CompetenciesEvaluation.choices(), blank=False, null=True)
     evidence = models.TextField(blank=False, null=False)
     is_target = models.BooleanField(default=False, blank=True)
-

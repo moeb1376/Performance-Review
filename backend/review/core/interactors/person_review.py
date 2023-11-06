@@ -1,9 +1,10 @@
+from accounts.models import User
 from core.enums import Phase, State
 from core.interactors.authorization import can_write_person_review, can_view_person_review_reviewer, \
     can_view_self_person_review, can_view_peer_person_review
 from core.interactors.settings import is_at_phase, get_active_round
 from core.interactors.utils import filter_query_set_for_manager_review
-from core.models import PersonReview, MAX_TEXT_LENGTH
+from core.models import PersonReview, MAX_TEXT_LENGTH, PersonReviewMention
 
 
 def save_person_review(reviewee, reviewer, **kwargs):
@@ -100,3 +101,9 @@ def get_person_review_reviewer(user, person_review):
     if not can_view_person_review_reviewer(user, person_review):
         return None
     return person_review.reviewer
+
+
+def get_person_review_mention_list(user, person_review):
+    if not can_view_person_review_reviewer(user, person_review):
+        return None
+    return User.objects.filter(id__in=list(PersonReviewMention.objects.filter(user=user).values_list(["mention_id"])))

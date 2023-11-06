@@ -6,7 +6,7 @@ from accounts.models import User
 from accounts.schema.user_query import UserNode
 from core.interactors.person_review import get_or_create_person_review, get_all_person_reviews, get_person_review, \
     get_user_person_reviews, get_person_review_reviewer, get_or_create_self_person_review, \
-    get_or_create_peer_person_review
+    get_or_create_peer_person_review, get_person_review_mention_list
 from core.schema.enums import Evaluation, State
 from graphql_api.schema.extension import Extension
 from graphql_api.schema.utils import get_node
@@ -25,14 +25,19 @@ class PersonReviewNode(DjangoObjectType):
 
     state = graphene.Field(State, required=True)
     reviewer = graphene.Field(UserNode)
+    mention_list = graphene.List(graphene.Field(UserNode))
     is_self_review = graphene.NonNull(graphene.Boolean)
 
     def resolve_reviewer(self, info):
         user = info.context.user
         return get_person_review_reviewer(user, self)
 
+    def resolve_mention_list(self, info):
+        user = info.context.user
+        return get_person_review_mention_list(user, self)
+
     def resolve_is_self_review(self, info):
-        return self.is_self_review() # self mire khode model ro miyare
+        return self.is_self_review()  # self mire khode model ro miyare
 
     @classmethod
     def get_node(cls, info, id):

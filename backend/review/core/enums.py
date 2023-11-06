@@ -10,9 +10,13 @@ class Evaluation(BaseEnum):
 
 class CompetenciesEvaluation(BaseEnum):
     LEVEL_1 = 1
+    LEVEL_1_5 = 1.5
     LEVEL_2 = 2
+    LEVEL_2_5 = 2.5
     LEVEL_3 = 3
+    LEVEL_3_5 = 3.5
     LEVEL_4 = 4
+    LEVEL_4_5 = 4.5
     LEVEL_5 = 5
 
 
