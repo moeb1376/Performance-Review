@@ -1,35 +1,54 @@
-import React, { Fragment, Suspense } from 'react';
-import { Box, Button, Grid, Typography } from '@material-ui/core';
+import graphql from 'babel-plugin-relay/macro';
+import React, { Fragment, Suspense, useState } from 'react';
+import { Box, Button, Grid, Tab, Theme, Typography, createStyles, makeStyles } from '@material-ui/core';
 import { FormChangeDetector } from 'src/shared/form-change-detector';
 import { FormChangePrompt } from 'src/shared/form-change-prompt';
 import { FullPageSpinner } from 'src/shared/loading';
-import { Redirect, Route, Switch, useHistory, useParams } from 'react-router-dom';
-import { TabLink } from 'src/shared/tab';
 import { Tabs } from 'src/shared/tabs';
 import { i18n } from '@lingui/core';
+import { useLazyLoadQuery } from 'react-relay/hooks';
 
 import CompetenciesForm from './CompetenciesForm';
-import { items } from '../self-review-page/DevelopingCompetencies';
+import { CompetenciesPageQuery } from './__generated__/CompetenciesPageQuery.graphql';
+
+const query = graphql`
+  query CompetenciesPageQuery {
+    viewer {
+      competencies {
+        name
+        helpText
+        id
+      }
+    }
+  }
+`;
 
 interface Props {}
-interface Params {
-  tab?: string;
-}
 
 export default function CompetenciesPage(props: Props) {
-  const toPrefix = '/self-review/competencies';
-  const { tab } = useParams<Params>();
-  const navigate = useHistory();
-  const isActive = items.findIndex((item) => item.url === `/${tab}`);
+  const data = useLazyLoadQuery<CompetenciesPageQuery>(query, {});
+
+  const [tab, setTab] = useState(() => data.viewer.competencies[0].id);
+
+  const classes = useStyles();
+
+  const currentTabIndex = data.viewer.competencies.findIndex((item) => item.id === tab);
+  const currentData = data.viewer.competencies[currentTabIndex];
 
   const handleNextTab = () => {
-    const url = toPrefix + items[isActive + 1].url;
-    navigate.push(url);
+    if (data.viewer.competencies.length > currentTabIndex) {
+      setTab(data.viewer.competencies[currentTabIndex + 1].id);
+    }
   };
 
   const handlePreviousTab = () => {
-    const url = toPrefix + items[isActive - 1].url;
-    navigate.push(url);
+    if (currentTabIndex > 0) {
+      setTab(data.viewer.competencies[currentTabIndex - 1].id);
+    }
+  };
+
+  const handleTabClick = (id: string) => (e: any) => {
+    setTab(id);
   };
 
   return (
@@ -42,9 +61,15 @@ export default function CompetenciesPage(props: Props) {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Tabs value={tab ?? 'problem-solving'} centered={false}>
-              {items.map((item) => (
-                <TabLink label={i18n._(item.title)} value={item.url.replace('/', '')} to={toPrefix + item.url} />
+            <Tabs value={tab} centered={false}>
+              {data.viewer.competencies.map((item) => (
+                <Tab
+                  className={classes.tab}
+                  key={item.id}
+                  label={i18n._(item.name)}
+                  value={item.id}
+                  onClick={handleTabClick(item.id)}
+                />
               ))}
             </Tabs>
           </Grid>
@@ -59,25 +84,43 @@ export default function CompetenciesPage(props: Props) {
             >
               <FormChangeDetector>
                 <FormChangePrompt message={i18n._('Changes you made may not be saved.')} />
-                <Switch>
-                  {items.map((item) => (
-                    <Route path={toPrefix + item.url} children={<CompetenciesForm title={item.title} />} />
-                  ))}
-                  <Redirect to={toPrefix + '/problem-solving'} />
-                </Switch>
+                {currentData ? (
+                  <CompetenciesForm
+                    key={tab}
+                    title={currentData.name}
+                    helpText={currentData.helpText}
+                    id={currentData.id}
+                  />
+                ) : null}
               </FormChangeDetector>
             </Suspense>
           </Grid>
         </Grid>
       </Box>
       <Box padding={4} display={'flex'} justifyContent={'flex-end'} style={{ gap: '8px' }}>
-        <Button variant="outlined" onClick={handlePreviousTab} disabled={isActive === 0}>
+        <Button variant="outlined" onClick={handlePreviousTab} disabled={currentTabIndex === 0}>
           قبلی
         </Button>
-        <Button variant="contained" color="primary" onClick={handleNextTab} disabled={isActive === items.length - 1}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleNextTab}
+          disabled={currentTabIndex === data.viewer.competencies.length - 1}
+        >
           بعدی
         </Button>
       </Box>
     </Fragment>
   );
 }
+
+const styles = (theme: Theme) =>
+  createStyles({
+    tab: {
+      padding: '7px 10px',
+      minWidth: 'auto',
+      marginInline: '8px',
+    },
+  });
+
+const useStyles = makeStyles(styles, { name: 'CompetenciesPage' });

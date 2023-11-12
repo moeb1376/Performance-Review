@@ -102,7 +102,12 @@ export function ProjectForm(props: Props) {
           <DictInput>
             <Grid item xs={12}>
               <DictInputItem field="projectName">
-                <StringInput variant="outlined" label={i18n._('Project title')} fullWidth />
+                <StringInput
+                  initialValue={projectReview.projectName}
+                  variant="outlined"
+                  label={i18n._('Project title')}
+                  fullWidth
+                />
               </DictInputItem>
             </Grid>
             <DictInputItem field="projectReviewId">
