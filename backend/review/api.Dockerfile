@@ -8,7 +8,7 @@ ENV PYTHONUNBUFFERED 1
 RUN mkdir /app
 WORKDIR /app
 
-RUN pip install poetry --trusted-host store.inside.sahab.ir -i https://store.inside.sahab.ir/repository/PyPi-Group/simple
+RUN pip install poetry
 RUN poetry config virtualenvs.create false
 COPY poetry.lock pyproject.toml /app/
 

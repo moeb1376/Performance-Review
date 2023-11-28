@@ -10,7 +10,7 @@ services:
       - gateway
     ports:
       # The HTTP port
-      - "1080:80"
+      - "80:80"
       # The Web UI (enabled by --api.insecure=true)
       - "8080:8080"
     volumes:
@@ -21,6 +21,7 @@ services:
     build:
       context: ../../../frontend
       dockerfile: Dockerfile
+    restart: always
     networks:
       - gateway
     labels:
@@ -32,11 +33,13 @@ services:
     build:
       context: ../../review
       dockerfile: statics.Dockerfile
+    restart: always
     networks:
       - gateway
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.statics.rule=Host(`${ADMIN_DOMAIN}`) && PathPrefix(`/django-statics/`)"
+      #      - "traefik.http.routers.statics.rule=Host(`${ADMIN_DOMAIN}`) && PathPrefix(`/django-statics/`)"
+      - "traefik.http.routers.statics.rule=Host(`${SITE_DOMAIN}`) && PathPrefix(`/django-statics/`)"
       - "traefik.http.routers.statics.priority=20"
 
   api:
@@ -54,12 +57,15 @@ services:
       - DATABASE_URL
       - ALLOWED_HOSTS
       - CORS_ALLOW_CREDENTIALS
+      - TIME_ZONE
     labels:
       - "traefik.enable=true"
+      #      - "traefik.docker.network=gateway"
       - "traefik.http.routers.api.rule=Host(`${SITE_DOMAIN}`) && PathPrefix(`/graphql`)"
       - "traefik.http.routers.api.priority=30"
-      - "traefik.http.routers.admin.rule=Host(`${ADMIN_DOMAIN}`)"
-      - "traefik.http.routers.admin.priority=10"
+      #      - "traefik.http.routers.admin.rule=Host(`${ADMIN_DOMAIN}`)"
+      - "traefik.http.routers.admin.rule=Host(`${SITE_DOMAIN}`)"
+      - "traefik.http.routers.admin.priority=30"
 
 
   database:

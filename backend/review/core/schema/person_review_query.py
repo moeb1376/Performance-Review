@@ -1,15 +1,13 @@
 import graphene
-from graphene import relay
-from graphene_django import DjangoObjectType
-
-from accounts.models import User
 from accounts.schema.user_query import UserNode
-from core.interactors.person_review import get_or_create_person_review, get_all_person_reviews, get_person_review, \
+from core.interactors.person_review import get_all_person_reviews, get_person_review, \
     get_user_person_reviews, get_person_review_reviewer, get_or_create_self_person_review, \
     get_or_create_peer_person_review, get_person_review_mention_list
-from core.schema.enums import Evaluation, State
+from core.schema.enums import State
+from graphene import relay
+from graphene_django import DjangoObjectType
 from graphql_api.schema.extension import Extension
-from graphql_api.schema.utils import get_node
+
 from ..models import PersonReview
 
 
@@ -25,7 +23,7 @@ class PersonReviewNode(DjangoObjectType):
 
     state = graphene.Field(State, required=True)
     reviewer = graphene.Field(UserNode)
-    mention_list = graphene.List(graphene.Field(UserNode))
+    # mention_list = graphene.List(graphene.Field(UserNode))
     is_self_review = graphene.NonNull(graphene.Boolean)
 
     def resolve_reviewer(self, info):
