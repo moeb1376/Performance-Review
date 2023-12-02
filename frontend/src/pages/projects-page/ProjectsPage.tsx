@@ -2,7 +2,7 @@ import graphql from 'babel-plugin-relay/macro';
 import React, { Fragment, useCallback, useContext, useState } from 'react';
 import { Box, FormControlLabel, Grid, Switch, Typography } from '@material-ui/core';
 import { FCProps } from 'src/shared/types/FCProps';
-import { FormChangeDetector, useFormChangeDetectorContext } from 'src/shared/form-change-detector';
+import { FormChangeDetector } from 'src/shared/form-change-detector';
 import { MDXContext } from '@mdx-js/react';
 import { SectionGuide } from 'src/shared/section-guide';
 import { i18n } from '@lingui/core';
@@ -65,7 +65,6 @@ export default function ProjectsPage(props: Props) {
   const { selfReviewProjectQuestions } = useRoundQuestions();
   const [showGuide, setShowGuide] = useState(true);
   const projectReviews = reverse(data.viewer.projectReviews);
-  const canAddNewProject = projectReviews.length < data.viewer.activeRound.maxProjectReviews;
 
   const saveProject = useCallback(
     (input: ProjectFormData) => {
@@ -83,19 +82,17 @@ export default function ProjectsPage(props: Props) {
   );
 
   const addProjectReview = useCallback(
-    ({ projectName = 'f' }: AddProjectFormData) => {
-      if (canAddNewProject && projectName !== null && !!projectName.length) {
-        const input = { projectName };
-        return createProjectReview({ input }).then((res) => {
-          if (!res.createProjectReview.projectReview) {
-            enqueueSnackbar(`${i18n._('Something went wrong.')} ${i18n._('Project review name is duplicated.')}`, {
-              variant: 'error',
-            });
-          }
-        });
-      }
+    ({ projectName }: AddProjectFormData) => {
+      const input = { projectName };
+      return createProjectReview({ input }).then((res) => {
+        if (!res.createProjectReview.projectReview) {
+          enqueueSnackbar(`${i18n._('Something went wrong.')} ${i18n._('Project review name is duplicated.')}`, {
+            variant: 'error',
+          });
+        }
+      });
     },
-    [canAddNewProject, createProjectReview, enqueueSnackbar],
+    [createProjectReview, enqueueSnackbar],
   );
 
   const deleteProject = useCallback(
@@ -132,7 +129,7 @@ export default function ProjectsPage(props: Props) {
             >
               {projectReviews.map((projectReview) => {
                 return (
-                  <FormChangeDetector>
+                  <FormChangeDetector key={projectReview.id}>
                     <ProjectExpansionPanel
                       key={projectReview.id}
                       projectReview={projectReview}
@@ -146,7 +143,7 @@ export default function ProjectsPage(props: Props) {
                 );
               })}
             </Box>
-            <AddProjectForm onSubmit={addProjectReview} canAddNewProject={canAddNewProject} />
+            <AddProjectForm onSubmit={addProjectReview} canAddNewProject />
           </Grid>
           {showGuide && (
             <Grid item xs={4}>

@@ -1,5 +1,11 @@
 # source: http://127.0.0.1:8000/graphql
-# timestamp: Tue Aug 16 2022 18:29:23 GMT+0430 (Iran Daylight Time)
+# timestamp: Mon Nov 06 2023 13:31:44 GMT+0330 (Iran Standard Time)
+
+"""Exposes a URL that specifies the behaviour of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behaviour of this scalar."""
+  url: String!
+) on SCALAR
 
 input AdjustProjectReviewMutationInput {
   projectReviewId: ID!
@@ -34,6 +40,49 @@ type ChangePasswordMutationPayload {
   viewer: ViewerNode!
   ok: Boolean!
   clientMutationId: String
+}
+
+input CompetenciesAnswersMutationInput {
+  competenciesAnswersId: ID
+  competenciesId: ID!
+  rating: CompetenciesEvaluation
+  evidence: String
+  isTarget: Boolean
+  clientMutationId: String
+}
+
+type CompetenciesAnswersMutationPayload {
+  viewer: ViewerNode!
+  competenciesAnswers: CompetenciesAnswersNode
+  clientMutationId: String
+}
+
+type CompetenciesAnswersNode implements Node {
+  user: UserNode!
+  competencies: CompetenciesNode!
+  evidence: String!
+  isTarget: Boolean!
+
+  """The ID of the object"""
+  id: ID!
+  rating: CompetenciesEvaluation
+}
+
+"""An enumeration."""
+enum CompetenciesEvaluation {
+  LEVEL_1
+  LEVEL_2
+  LEVEL_3
+  LEVEL_4
+  LEVEL_5
+}
+
+type CompetenciesNode implements Node {
+  name: String!
+  helpText: String!
+
+  """The ID of the object"""
+  id: ID!
 }
 
 input CreateProjectReviewMutationInput {
@@ -108,7 +157,7 @@ type ManagerPersonReviewNode implements Node {
   strengths: [String!]
   weaknesses: [String!]
 
-  """The ID of the object."""
+  """The ID of the object"""
   id: ID!
   overallRating: Evaluation
 }
@@ -116,7 +165,7 @@ type ManagerPersonReviewNode implements Node {
 type ManagerProjectCommentNode implements Node {
   projectReview: ProjectReviewNode!
 
-  """The ID of the object."""
+  """The ID of the object"""
   id: ID!
   rating: Evaluation
   answers: [AnswerOutput!]!
@@ -132,6 +181,7 @@ type Mutation {
   saveManagerPersonReview(input: SaveManagerPersonReviewMutationInput!): SaveManagerPersonReviewMutationPayload!
   saveManagerProjectComment(input: SaveManagerProjectCommentMutationInput!): SaveManagerProjectCommentMutationPayload!
   startReview(input: StartReviewMutationInput!): StartReviewMutationPayload!
+  competenciesAnswers(input: CompetenciesAnswersMutationInput!): CompetenciesAnswersMutationPayload!
   login(input: LoginMutationInput!): LoginMutationPayload!
   logout(input: LogoutMutationInput!): LogoutMutationPayload!
   changePassword(input: ChangePasswordMutationInput!): ChangePasswordMutationPayload!
@@ -139,7 +189,7 @@ type Mutation {
 
 """An object with an ID"""
 interface Node {
-  """The ID of the object."""
+  """The ID of the object"""
   id: ID!
 }
 
@@ -148,7 +198,7 @@ type PersonReviewNode implements Node {
   strengths: [String!]
   weaknesses: [String!]
 
-  """The ID of the object."""
+  """The ID of the object"""
   id: ID!
   state: State!
   reviewer: UserNode
@@ -168,7 +218,7 @@ enum Phase {
 type ProjectCommentNode implements Node {
   projectReview: ProjectReviewNode!
 
-  """The ID of the object."""
+  """The ID of the object"""
   id: ID!
   reviewer: UserNode
   rating: Evaluation
@@ -181,7 +231,7 @@ type ProjectReviewNode implements Node {
   consultedWithManager: Boolean!
   approvedByManager: Boolean!
 
-  """The ID of the object."""
+  """The ID of the object"""
   id: ID!
   rating: Evaluation
   answers: [AnswerOutput!]!
@@ -214,7 +264,7 @@ type QuestionNode implements Node {
   privateAnswerToPeerReviewers: Boolean!
   privateAnswerToReviewee: Boolean!
 
-  """The ID of the object."""
+  """The ID of the object"""
   id: ID!
   questionType: QuestionType!
 }
@@ -230,8 +280,9 @@ type RoundNode implements Node {
   reviewersAreAnonymous: Boolean!
   maxProjectReviews: Int!
   maxReviewers: Int!
+  maxCompetencyTarget: Int!
 
-  """The ID of the object."""
+  """The ID of the object"""
   id: ID!
   phase: Phase!
   participants: [UserNode!]!
@@ -300,7 +351,7 @@ type SettingsNode implements Node {
   logoUrl: String
   lightLogoUrl: String
 
-  """The ID of the object."""
+  """The ID of the object"""
   id: ID!
   phase: Phase!
   startText: String
@@ -333,7 +384,7 @@ type UserNode implements Node {
   avatarUrl: String
   isHr: Boolean!
 
-  """The ID of the object."""
+  """The ID of the object"""
   id: ID!
   isManager: Boolean!
 
@@ -357,39 +408,52 @@ type UserNode implements Node {
 }
 
 type ViewerNode implements Node {
-  """The ID of the object."""
+  """The ID of the object"""
   id: ID!
   users: [UserNode!]!
-
-  """The ID of the object"""
-  user(id: ID!): UserNode
+  user(
+    """The ID of the object"""
+    id: ID!
+  ): UserNode
   me: UserNode
-
-  """The ID of the object"""
-  round(id: ID!): RoundNode
+  round(
+    """The ID of the object"""
+    id: ID!
+  ): RoundNode
   activeRound: RoundNode!
   rounds: [RoundNode!]!
-
-  """The ID of the object"""
-  managerProjectComment(id: ID!): ManagerProjectCommentNode
+  managerProjectComment(
+    """The ID of the object"""
+    id: ID!
+  ): ManagerProjectCommentNode
   managerProjectComments: [ManagerProjectCommentNode!]!
-
-  """The ID of the object"""
-  managerPersonReview(id: ID!): ManagerPersonReviewNode
+  managerPersonReview(
+    """The ID of the object"""
+    id: ID!
+  ): ManagerPersonReviewNode
   managerPersonReviews: [ManagerPersonReviewNode!]!
-
-  """The ID of the object"""
-  projectComment(id: ID!): ProjectCommentNode
+  projectComment(
+    """The ID of the object"""
+    id: ID!
+  ): ProjectCommentNode
   projectComments: [ProjectCommentNode!]!
-
-  """The ID of the object"""
-  projectReview(id: ID!): ProjectReviewNode
+  competencie(
+    """The ID of the object"""
+    id: ID!
+  ): CompetenciesNode
+  competencies: [CompetenciesNode!]!
+  competenciesUserAnswers: [CompetenciesAnswersNode!]!
+  projectReview(
+    """The ID of the object"""
+    id: ID!
+  ): ProjectReviewNode
   projectReviews(revieweeId: ID): [ProjectReviewNode!]!
   usersToReview: [UserNode!]!
   settings: SettingsNode!
-
-  """The ID of the object"""
-  personReview(id: ID!): PersonReviewNode
+  personReview(
+    """The ID of the object"""
+    id: ID!
+  ): PersonReviewNode
   personReviews: [PersonReviewNode!]!
   node(id: ID!): Node
 }

@@ -32,7 +32,7 @@ export function getMenuItems(phase: Phase, user: User): NavbarMenuItem[] {
         link: {
           to: '/self-review/dominant-characteristics',
         },
-        text: i18n._('Dominant Characteristics'),
+        text: i18n._('Strengths'),
       },
     ];
   }

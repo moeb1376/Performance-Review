@@ -21,11 +21,11 @@ msgstr "%s - Performance Review"
 msgid "**Coordinate reviewers with manager"
 msgstr "**Coordinate reviewers with manager"
 
-#: src/pages/projects-page/ProjectForm.tsx:80
+#: src/pages/projects-page/ProjectForm.tsx:75
 msgid "**Coordinate reviewers with your manager (maximum {num} reviewers)"
 msgstr "**Coordinate reviewers with your manager (maximum {num} reviewers)"
 
-#: src/containers/main/getMenuItems.ts:22
+#: src/containers/main/getMenuItems.ts:16
 #: src/pages/dashboard-page/DashboardPage.tsx:36
 #: src/pages/manager-adjustment-dashboard/ManagerAdjustmentDashboardTable.tsx:62
 #: src/pages/manager-adjustment-page/ManagerAdjustmentPage.tsx:42
@@ -36,13 +36,11 @@ msgstr "**Coordinate reviewers with your manager (maximum {num} reviewers)"
 #: src/pages/peer-review-page/EndEvaluationDialogContent/AchievementsContent.tsx:13
 #: src/pages/peer-review-page/PeerReviewPage.tsx:45
 #: src/pages/result-page/ResultPage.tsx:42
-#: src/pages/self-review-page/SelfReviewPage.tsx:23
 msgid "Achievements"
 msgstr "Achievements"
 
-#: src/pages/projects-page/AddProjectForm.tsx:38
-#: src/pages/projects-page/AddProjectForm.tsx:43
-#: src/shared/strengths-weaknesses/StrengthsOrWeaknesses.tsx:58
+#: src/pages/projects-page/AddProjectForm.tsx:20
+#: src/pages/projects-page/AddProjectForm.tsx:25
 msgid "Add"
 msgstr "Add"
 
@@ -70,7 +68,7 @@ msgstr "All reviews were successfully done"
 msgid "An error occurred. Try again!"
 msgstr "An error occurred. Try again!"
 
-#: src/pages/projects-page/ProjectForm.tsx:95
+#: src/pages/projects-page/ProjectForm.tsx:84
 msgid "Are you sure you want to delete {projectName} review?"
 msgstr "Are you sure you want to delete {projectName} review?"
 
@@ -83,26 +81,23 @@ msgstr "Are you sure you want to end the {name} evaluation?"
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/pages/competencies-page/CompetenciesPage.tsx:29
+#: src/pages/competencies-page/CompetenciesPage.tsx:60
 #: src/pages/manager-adjustment-page/ManagerAdjustmentPage.tsx:35
 #: src/pages/manager-review-page/ManagerReviewPage.tsx:38
 #: src/pages/manager-review-page/ManagerReviewPrintPage.tsx:42
 #: src/pages/peer-review-page/PeerReviewPage.tsx:37
-#: src/pages/self-review-page/SelfReviewPage.tsx:33
+#: src/pages/self-review-page/SelfReviewPage.tsx:26
 #: src/stories/decorators/promptDecorator.tsx:7
 msgid "Changes you made may not be saved."
 msgstr "Changes you made may not be saved."
-
-#: src/pages/projects-page/AddProjectForm.tsx:20
-msgid "Choose projects you have been working on in the past year (At most {num})."
-msgstr "Choose projects you have been working on in the past year (At most {num})."
 
 #: src/pages/manager-adjustment-dashboard/TableFilters.tsx:19
 #: src/pages/manager-review-dashboard/TableFilters.tsx:14
 msgid "Colleague name"
 msgstr "Colleague name"
 
-#: src/pages/self-review-page/SelfReviewPage.tsx:24
+#: src/containers/main/getMenuItems.ts:22
+#: src/pages/competencies-page/CompetenciesPage.tsx:46
 msgid "Competencies"
 msgstr "Competencies"
 
@@ -111,7 +106,7 @@ msgid "Criteria"
 msgstr "Criteria"
 
 #: src/containers/main/getMenuItems.ts:6
-#: src/containers/main/getMenuItems.ts:47
+#: src/containers/main/getMenuItems.ts:45
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -120,7 +115,7 @@ msgstr "Dashboard"
 msgid "Dear {name}, Hello"
 msgstr "Dear {name}, Hello"
 
-#: src/pages/projects-page/ProjectForm.tsx:95
+#: src/pages/projects-page/ProjectForm.tsx:84
 msgid "Delete"
 msgstr "Delete"
 
@@ -129,14 +124,12 @@ msgstr "Delete"
 msgid "Doing"
 msgstr "Doing"
 
-#: src/containers/main/getMenuItems.ts:28
 #: src/pages/dashboard-page/DashboardPage.tsx:49
 #: src/pages/manager-review-page/ManagerReviewPage.tsx:47
 #: src/pages/manager-review-page/ManagerReviewPrintPage.tsx:57
 #: src/pages/peer-review-page/EndEvaluationDialogContent/DominantCharacteristicsContent.tsx:11
 #: src/pages/peer-review-page/PeerReviewPage.tsx:47
 #: src/pages/result-page/ResultPage.tsx:43
-#: src/pages/self-review-page/SelfReviewPage.tsx:25
 msgid "Dominant Characteristics"
 msgstr "Dominant Characteristics"
 
@@ -197,6 +190,10 @@ msgstr "Go to Achievements page and add projects you have participated in"
 msgid "Good job!"
 msgstr "Good job!"
 
+#: src/pages/self-review-page/DevelopingCompetencies.tsx:22
+msgid "Growth goals"
+msgstr "Growth goals"
+
 #: src/global-types/Evaluation.ts:16
 msgid "He/She Needs Improvement"
 msgstr "He/She Needs Improvement"
@@ -206,10 +203,6 @@ msgstr "He/She Needs Improvement"
 msgid "He/She asked your review on {numberOfProjects} project(s)"
 msgstr "He/She asked your review on {numberOfProjects} project(s)"
 
-#: src/pages/projects-page/ProjectForm.tsx:65
-msgid "How effective were you in this project?"
-msgstr "How effective were you in this project?"
-
 #: src/global-types/Evaluation.ts:10
 msgid "I Need Improvement"
 msgstr "I Need Improvement"
@@ -217,10 +210,6 @@ msgstr "I Need Improvement"
 #: src/pages/manager-adjustment-page/achievements/ManagerAdjustmentForm.tsx:47
 msgid "I approve"
 msgstr "I approve"
-
-#: src/pages/projects-page/ProjectForm.tsx:88
-msgid "I consulted with my manager"
-msgstr "I consulted with my manager"
 
 #: src/pages/dashboard-page/DominantCharacteristicsCircularIndicator.tsx:56
 msgid "I thought you forgot to write your strengths!"
@@ -230,6 +219,10 @@ msgstr "I thought you forgot to write your strengths!"
 #: src/pages/peer-review-board-page/PeerReviewBoardPage.tsx:79
 msgid "In Progress"
 msgstr "In Progress"
+
+#: src/pages/competencies-page/CompetenciesForm.tsx:120
+msgid "In which of the activities that you wrote in the \"Activities\" section did this competence play a prominent role? (Writing the title of the activity is enough)"
+msgstr "In which of the activities that you wrote in the \"Activities\" section did this competence play a prominent role? (Writing the title of the activity is enough)"
 
 #: src/pages/dashboard-page/DominantCharacteristicsCircularIndicator.tsx:59
 msgid "It'd be a good idea to write a weakness!"
@@ -268,10 +261,6 @@ msgstr "Meets Expectations from Him/Her"
 msgid "Meets Expectations from me"
 msgstr "Meets Expectations from me"
 
-#: src/pages/projects-page/ProjectForm.tsx:70
-msgid "My evaluation"
-msgstr "My evaluation"
-
 #: src/pages/peer-review-page/EndEvaluation.tsx:109
 #: src/shared/confirm-button/ConfirmButton.tsx:8
 msgid "No"
@@ -309,7 +298,7 @@ msgstr "Overall Rating"
 msgid "Password"
 msgstr "Password"
 
-#: src/containers/main/getMenuItems.ts:37
+#: src/containers/main/getMenuItems.ts:35
 msgid "Peer Review"
 msgstr "Peer Review"
 
@@ -328,15 +317,6 @@ msgstr "Performance Review System"
 msgid "Persian"
 msgstr "فارسی"
 
-#: src/pages/competencies-page/CompetenciesPage.tsx:20
-msgid "Planing and Organizing"
-msgstr "Planing and Organizing"
-
-#: src/pages/competencies-page/CompetenciesPage.tsx:19
-#: src/pages/problem-solving-page/ProblemSolvingPage.tsx:14
-msgid "Problem solving"
-msgstr "Problem solving"
-
 #: src/pages/idle-page/IdlePage.tsx:10
 msgid "Programmers are typing..."
 msgstr "Programmers are typing..."
@@ -345,12 +325,13 @@ msgstr "Programmers are typing..."
 msgid "Project review name is duplicated."
 msgstr "Project review name is duplicated."
 
-#: src/pages/projects-page/AddProjectForm.tsx:29
+#: src/pages/projects-page/ProjectForm.tsx:63
 #: src/pages/projects-page/project-review-title-editor/ProjectReviewEditForm.tsx:59
 msgid "Project title"
 msgstr "Project title"
 
-#: src/pages/projects-page/AddProjectForm.tsx:16
+#: src/pages/projects-page/AddProjectForm.tsx:20
+#: src/pages/projects-page/ProjectsPage.tsx:87
 #: src/shared/full-page-error/FullPageError.stories.tsx:21
 msgid "Projects"
 msgstr "Projects"
@@ -360,7 +341,8 @@ msgid "Reviewee"
 msgstr "Reviewee"
 
 #: src/pages/manager-adjustment-page/achievements/ManagerAdjustmentForm.tsx:39
-#: src/pages/projects-page/ProjectForm.tsx:80
+#: src/pages/projects-page/ProjectForm.tsx:75
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:50
 msgid "Reviewers (maximum {num})"
 msgstr "Reviewers (maximum {num})"
 
@@ -369,8 +351,8 @@ msgstr "Reviewers (maximum {num})"
 #: src/pages/manager-review-page/dominant-characteristics/ManagerReviewDominantCharacteristics.tsx:93
 #: src/pages/manager-review-page/overall-evaluation/ManagerReviewOverallEvaluation.tsx:82
 #: src/pages/peer-review-page/projectsTab/projects-form/PeerReviewProjectsForm.tsx:51
-#: src/pages/projects-page/ProjectForm.tsx:99
-#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:63
+#: src/pages/projects-page/ProjectForm.tsx:88
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:65
 msgid "Save"
 msgstr "Save"
 
@@ -392,10 +374,6 @@ msgstr "See More"
 msgid "Select"
 msgstr "Select"
 
-#: src/containers/main/getMenuItems.ts:13
-msgid "Self Review"
-msgstr "Self Review"
-
 #: src/pages/start-page/NoPeerReviewPage.tsx:37
 #: src/shared/gift-dialog/GiftDialog.tsx:45
 msgid "Show and claim reward"
@@ -403,7 +381,7 @@ msgstr "Show and claim reward"
 
 #: src/core/snackbar/Snackbar.stories.tsx:23
 #: src/pages/peer-review-page/projectsTab/project-expansion-panel/PeerReviewProjectExpansionPanel.tsx:42
-#: src/pages/projects-page/ProjectsPage.tsx:62
+#: src/pages/projects-page/ProjectsPage.tsx:63
 #: src/pages/projects-page/ProjectsPage.tsx:70
 #: src/pages/projects-page/project-review-title-editor/ProjectReviewEditForm.tsx:43
 #: src/pages/strengths-weaknesses-page/StrengthsWeaknessesPage.tsx:73
@@ -417,6 +395,12 @@ msgstr "Something went wrong. Please try again"
 #: src/pages/start-page/StartReviewCard.tsx:25
 msgid "Start"
 msgstr "Start"
+
+#: src/containers/main/getMenuItems.ts:28
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:41
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:46
+msgid "Strengths"
+msgstr "Strengths"
 
 #: src/shared/full-page-error/FullPageError.stories.tsx:15
 msgid "Strengths and Weaknesses"
@@ -444,7 +428,7 @@ msgstr "Submit changes"
 #: src/pages/manager-review-page/dominant-characteristics/ManagerReviewDominantCharacteristics.tsx:55
 #: src/pages/manager-review-page/overall-evaluation/ManagerReviewOverallEvaluation.tsx:54
 #: src/pages/peer-review-page/projectsTab/project-expansion-panel/PeerReviewProjectExpansionPanel.tsx:39
-#: src/pages/projects-page/ProjectsPage.tsx:59
+#: src/pages/projects-page/ProjectsPage.tsx:60
 #: src/pages/projects-page/project-review-title-editor/ProjectReviewEditForm.tsx:48
 #: src/pages/strengths-weaknesses-page/StrengthsWeaknessesPage.tsx:70
 msgid "Successfully saved."
@@ -460,29 +444,25 @@ msgid "Thanks, I claim it later"
 msgstr "Thanks, I claim it later"
 
 #: src/pages/dashboard-page/ProjectProgress.tsx:14
-#: src/pages/projects-page/ProjectExpansionPanel.tsx:31
 msgid "The manager has not been consulted"
 msgstr "The manager has not been consulted"
 
-#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:54
 #: src/shared/dominant-characteristics-output/DominantCharacteristics.tsx:21
 msgid "The most important characteristics or behaviors I should improve in myself"
 msgstr "The most important characteristics or behaviors I should improve in myself"
 
 #: src/pages/manager-review-page/dominant-characteristics/ManagerReviewDominantCharacteristics.tsx:82
 #: src/pages/result-page/strengths-weaknesses-result-page/StrengthsWeaknessesResult.tsx:7
-#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:55
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:46
 msgid "The most important characteristics or behaviors he/she should improve"
 msgstr "The most important characteristics or behaviors he/she should improve"
 
-#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:45
 #: src/shared/dominant-characteristics-output/DominantCharacteristics.tsx:18
 msgid "The most important characteristics or effective behaviors that I should maintain"
 msgstr "The most important characteristics or effective behaviors that I should maintain"
 
 #: src/pages/manager-review-page/dominant-characteristics/ManagerReviewDominantCharacteristics.tsx:74
 #: src/pages/result-page/strengths-weaknesses-result-page/StrengthsWeaknessesResult.tsx:6
-#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:46
 msgid "The most important characteristics or effective behaviors that he/she should maintain"
 msgstr "The most important characteristics or effective behaviors that he/she should maintain"
 
@@ -493,6 +473,10 @@ msgstr "The parts that are not complete"
 #: src/pages/projects-page/project-review-title-editor/ProjectReviewEditForm.tsx:43
 msgid "The project review name already exists."
 msgstr "The project review name already exists."
+
+#: src/pages/competencies-page/CompetenciesForm.tsx:116
+msgid "The role of competence in activities"
+msgstr "The role of competence in activities"
 
 #: src/shared/those-who-did-not-comment/ThoseWhoDidNotComment.tsx:51
 msgid "Those who did not comment"
@@ -537,22 +521,17 @@ msgid "View"
 msgstr "View"
 
 #: src/pages/manager-review-page/dominant-characteristics/ManagerReviewDominantCharacteristics.tsx:77
-#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:46
 msgid "What should he/she continue doing"
 msgstr "What should he/she continue doing"
 
 #: src/pages/manager-review-page/dominant-characteristics/ManagerReviewDominantCharacteristics.tsx:85
-#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:55
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:46
 msgid "What should he/she improve"
 msgstr "What should he/she improve"
 
-#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:46
-msgid "What to continue doing"
-msgstr "What to continue doing"
-
-#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:55
-msgid "What to improve"
-msgstr "What to improve"
+#: src/pages/strengths-weaknesses-page/StrengthsWeaknessesForm.tsx:45
+msgid "Write down your most important strengths"
+msgstr "Write down your most important strengths"
 
 #: src/pages/peer-review-page/EndEvaluation.tsx:111
 #: src/shared/confirm-button/ConfirmButton.tsx:8
@@ -599,6 +578,10 @@ msgstr "You haven't started evaluating yet!"
 msgid "You're almost there!"
 msgstr "You're almost there!"
 
+#: src/pages/projects-page/ProjectExpansionPanel.tsx:35
+msgid "Your changes have not been saved"
+msgstr "Your changes have not been saved"
+
 #: src/pages/peer-review-page/projectsTab/PeerReviewProjectsResult.tsx:48
 #: src/pages/peer-review-page/projectsTab/project-expansion-panel/PeerReviewProjectExpansionPanel.tsx:66
 msgid "Your comment about {name}'s performance in this project"
@@ -638,3 +621,7 @@ msgstr "{name}'s comment about his/her performance compared to initial expectati
 #: src/pages/peer-review-page/EndEvaluation.tsx:63
 msgid "{name}'s evaluation completed successfully."
 msgstr "{name}'s evaluation completed successfully."
+
+#: src/pages/self-review-page/DevelopingCompetencies.tsx:26
+msgid "از بین شایستگی‌ها برای سال آتی، فقط ۲ تا رو که میخای در اونها پیشرفت کنی انتخاب کن"
+msgstr "از بین شایستگی‌ها برای سال آتی، فقط ۲ تا رو که میخای در اونها پیشرفت کنی انتخاب کن"

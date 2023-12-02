@@ -1,7 +1,7 @@
 import graphql from 'babel-plugin-relay/macro';
 import React, { useContext, useState } from 'react';
 import { ActionBar } from 'src/shared/action-bar';
-import { DictInput, DictInputItem, Forminator, SubmitButton } from 'src/shared/forminator';
+import { DictInput, DictInputItem, Forminator, SelectMultiAutoComplete, SubmitButton } from 'src/shared/forminator';
 import { FCProps } from 'src/shared/types/FCProps';
 import { FormControlLabel, Grid, Switch, Typography } from '@material-ui/core';
 import { MDXContext } from '@mdx-js/react';
@@ -57,24 +57,32 @@ export function StrengthsWeaknessesForm(props: Props) {
           />
         </Grid>
         <DictInput>
-          <DictInputItem field="weaknesses">
-            <Grid item xs={showGuide ? 8 : 12}>
+          <Grid item xs={showGuide ? 8 : 12}>
+            <DictInputItem field="weaknesses">
               <Typography variant="h3" style={{ marginBottom: 32 }}>
-                {i18n._('Dominant Characteristics')}
+                {i18n._('Strengths')}
               </Typography>
 
               <StrengthsOrWeaknesses
                 maxLength={3}
                 title={
                   isSelfReview
-                    ? i18n._('The most important characteristics or behaviors I should improve in myself')
+                    ? i18n._('Write down your most important strengths')
                     : i18n._('The most important characteristics or behaviors he/she should improve')
                 }
-                label={isSelfReview ? i18n._('What to improve') : i18n._('What should he/she improve')}
+                label={isSelfReview ? i18n._('Strengths') : i18n._('What should he/she improve')}
               />
               <ArrayValuePrompt value={props.initialValue?.weaknesses} equal={arrayEqual} />
-            </Grid>
-          </DictInputItem>
+            </DictInputItem>
+            <DictInputItem field="reviewersId">
+              <SelectMultiAutoComplete
+                filterSelectedOptions
+                label={i18n._('Reviewers (maximum {num})', { num: 5 })}
+                maximumValues={5}
+                options={[]}
+              />
+            </DictInputItem>
+          </Grid>
           {showGuide && (
             <Grid item xs={4}>
               <SectionGuide>
@@ -89,6 +97,7 @@ export function StrengthsWeaknessesForm(props: Props) {
             </Grid>
           )}
         </DictInput>
+
         <StickyBottomPaper>
           <ActionBar>
             <SubmitButton variant="contained" color="primary" disabled={!dirty}>
