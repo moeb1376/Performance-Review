@@ -230,5 +230,9 @@ def can_view_person_review_reviewer(user, person_review):
     return can_view_reviewer(user, person_review.reviewee, person_review.round)
 
 
+def can_view_person_review_mention_list(user, person_review):
+    return person_review.is_self_review()
+
+
 def can_view_project_comment_reviewer(user, project_comment):
     return can_view_reviewer(user, project_comment.project_review.reviewee, project_comment.project_review.round)

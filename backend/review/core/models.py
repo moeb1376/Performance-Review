@@ -137,7 +137,7 @@ class PersonReview(TimeStampedModel):
     round = models.ForeignKey(Round, on_delete=models.PROTECT)
     reviewee = models.ForeignKey(User, on_delete=models.PROTECT, related_name='person_reviews')
     reviewer = models.ForeignKey(User, on_delete=models.PROTECT, related_name='authored_person_reviews')
-    # reviewers = models.ManyToManyField(User, blank=True, related_name='person_reviews_to_comment')
+    mention_users = models.ManyToManyField(User, blank=True, related_name='person_reviews_to_comment')
 
     strengths = ArrayField(models.TextField(), size=3, null=True, blank=True)
 
@@ -163,11 +163,6 @@ class PersonReview(TimeStampedModel):
 
     class Meta:
         ordering = ['created']
-
-
-class PersonReviewMention(models.Model):
-    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='author_mention_person_reviews')
-    mention_user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='mentioned_person_reviews')
 
 
 class ManagerPersonReview(models.Model):

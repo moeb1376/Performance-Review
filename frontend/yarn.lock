@@ -16285,7 +16285,7 @@ react-scripts@3.4.1:
 
 react-simple-star-rating@^5.1.7:
   version "5.1.7"
-  resolved "https://store.inside.sahab.ir/repository/NPM-Group/react-simple-star-rating/-/react-simple-star-rating-5.1.7.tgz#5406ade8d0e117a654e979ebd702d89389876c29"
+  resolved "https://registry.yarnpkg.com/react-simple-star-rating/-/react-simple-star-rating-5.1.7.tgz#5406ade8d0e117a654e979ebd702d89389876c29"
   integrity sha512-NTFkW8W3uwvI82Fv7JW5i7gmDjEZKxJmj+Z9vn+BjYIXT6ILdnU9qnSUP2cWrWN/WAUlue81f9SgM4CQcenltQ==
 
 react-sizeme@^2.6.7:
@@ -19087,7 +19087,7 @@ use-composed-ref@^1.0.0:
 
 use-debounce@^10.0.0:
   version "10.0.0"
-  resolved "https://store.inside.sahab.ir/repository/NPM-Group/use-debounce/-/use-debounce-10.0.0.tgz#5091b18d6c16292605f588bae3c0d2cfae756ff2"
+  resolved "https://registry.yarnpkg.com/use-debounce/-/use-debounce-10.0.0.tgz#5091b18d6c16292605f588bae3c0d2cfae756ff2"
   integrity sha512-XRjvlvCB46bah9IBXVnq/ACP2lxqXyZj0D9hj4K5OzNroMDpTEBg8Anuh1/UfRTRs7pLhQ+RiNxxwZu9+MVl1A==
 
 use-isomorphic-layout-effect@^1.0.0:

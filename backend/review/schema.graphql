@@ -94,12 +94,12 @@ type UserNode implements Node {
 type PersonReviewNode implements Node {
   reviewee: UserNode!
   strengths: [String!]
-  weaknesses: [String!]
 
   """The ID of the object"""
   id: ID!
   state: State!
   reviewer: UserNode
+  mentionUsers: [UserNode!]!
   isSelfReview: Boolean!
 }
 
@@ -294,8 +294,7 @@ type SavePersonReviewMutationPayload {
 input SavePersonReviewMutationInput {
   revieweeId: ID!
   strengths: [String!]
-  weaknesses: [String!]
-  state: State
+  mentionUsersId: [ID!]
   clientMutationId: String
 }
 

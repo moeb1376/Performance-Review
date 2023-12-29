@@ -17,20 +17,19 @@ class PersonReviewNode(DjangoObjectType):
         fields = [
             'reviewee',
             'strengths',
-            'weaknesses',
         ]
         interfaces = (relay.Node,)
 
     state = graphene.Field(State, required=True)
     reviewer = graphene.Field(UserNode)
-    # mention_list = graphene.List(graphene.Field(UserNode))
+    mention_users = graphene.List(graphene.NonNull(UserNode), required=True)
     is_self_review = graphene.NonNull(graphene.Boolean)
 
     def resolve_reviewer(self, info):
         user = info.context.user
         return get_person_review_reviewer(user, self)
 
-    def resolve_mention_list(self, info):
+    def resolve_mention_users(self, info):
         user = info.context.user
         return get_person_review_mention_list(user, self)
 
