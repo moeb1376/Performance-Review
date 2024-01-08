@@ -1,5 +1,3 @@
-import datetime
-
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from model_utils.models import TimeStampedModel
@@ -140,7 +138,7 @@ class PersonReview(TimeStampedModel):
     mention_users = models.ManyToManyField(User, blank=True, related_name='person_reviews_to_comment')
 
     strengths = ArrayField(models.TextField(), size=3, null=True, blank=True)
-
+    strength = models.TextField(null=True, blank=True)
     state = models.IntegerField(choices=State.choices(), default=State.TODO.value)
 
     # Not currently used

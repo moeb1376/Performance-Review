@@ -93,7 +93,7 @@ type UserNode implements Node {
 
 type PersonReviewNode implements Node {
   reviewee: UserNode!
-  strengths: [String!]
+  strength: String
 
   """The ID of the object"""
   id: ID!
@@ -293,8 +293,9 @@ type SavePersonReviewMutationPayload {
 
 input SavePersonReviewMutationInput {
   revieweeId: ID!
-  strengths: [String!]
+  strength: String!
   mentionUsersId: [ID!]
+  state: State
   clientMutationId: String
 }
 

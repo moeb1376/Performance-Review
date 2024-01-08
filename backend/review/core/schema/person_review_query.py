@@ -1,13 +1,13 @@
 import graphene
+from graphene import relay
+from graphene_django import DjangoObjectType
+
 from accounts.schema.user_query import UserNode
 from core.interactors.person_review import get_all_person_reviews, get_person_review, \
     get_user_person_reviews, get_person_review_reviewer, get_or_create_self_person_review, \
     get_or_create_peer_person_review, get_person_review_mention_list
 from core.schema.enums import State
-from graphene import relay
-from graphene_django import DjangoObjectType
 from graphql_api.schema.extension import Extension
-
 from ..models import PersonReview
 
 
@@ -16,7 +16,7 @@ class PersonReviewNode(DjangoObjectType):
         model = PersonReview
         fields = [
             'reviewee',
-            'strengths',
+            'strength',
         ]
         interfaces = (relay.Node,)
 

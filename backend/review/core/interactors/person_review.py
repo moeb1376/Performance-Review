@@ -36,6 +36,7 @@ def save_person_review(reviewee, reviewer, mention_users, **kwargs):
 
     state = kwargs.get('state', State.DOING.value)
     person_review.state = state
+    person_review.strength = kwargs.get('strength', "")
     set_person_review_mention_user(person_review, mention_users)
 
     person_review.save()
